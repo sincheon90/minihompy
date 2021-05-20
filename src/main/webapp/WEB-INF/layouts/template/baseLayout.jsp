@@ -138,8 +138,14 @@ body
 							<!-- ---------------------------------------------------------------------------- -->
 
 						</td>
-						<td width="480" height="450" background="./images/bg_center_rect.jpg">
-							<tiles:insertAttribute name="content" />
+						<td>
+							<div style="overflow:auto; width:480px; height:450px;">
+							<table border =0 width="480" height="450" background="./images/bg_center_rect.jpg">
+							<tr><td >
+								<tiles:insertAttribute name="content" />
+							</td></tr>
+							</table>
+							</div>
 						</td>
 						<!-- 오른쪽 메뉴 부분 ----------------------------------------------------------- -->
 						<td>
