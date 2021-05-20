@@ -17,14 +17,7 @@ Tiles Configuration 3.0//EN"
 		<put-attribute name="title" value="tiles.welcome.title" />
 		<put-attribute name="heading" value="" />
 		<put-attribute name="tagline" value="tiles.welcome.tagline" />
-		<put-attribute name="content" value="/WEB-INF/views/welcome.jsp"/>
-	</definition>
-	
-	<definition name="m1" extends="baseLayout">
-		<put-attribute name="title" value="tiles.products.title" />
-		<put-attribute name="heading" value="" />
-		<put-attribute name="tagline" value="tiles.products.tagline" />
-		<put-attribute name="content" value="/WEB-INF/views/m1.jsp"/>
+		<put-attribute name="content" value="/WEB-INF/views/main.jsp"/>
 	</definition>
 	
 <definition name="product" extends="baseLayout">
