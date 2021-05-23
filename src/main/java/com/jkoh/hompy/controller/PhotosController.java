@@ -1,22 +1,23 @@
 package com.jkoh.hompy.controller;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.jkoh.hompy.service.PhotosService;
+
 @Controller
-@RequestMapping("/")
+@RequestMapping("photos")
 public class PhotosController {
+	
+	@Autowired
+	private PhotosService photosService;
+	
 	@RequestMapping
-	public String welcome(Model model, RedirectAttributes redAttrs) {
-		String greeting = "환영합니다!";
-		String tagline = "세상에서 하나 뿐인";
-		
-		model.addAttribute("greeting", greeting);
-		model.addAttribute("tagline", tagline);
-		redAttrs.addFlashAttribute("greeting", greeting);
-		redAttrs.addFlashAttribute("tagline", tagline);
-		return "welcome";
+	public String list(Model model) {
+		model.addAttribute("photo", photosService.getAllPhotos());
+		return "photos";
 	}
 }

@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 @Controller
-@RequestMapping("photos")
+@RequestMapping("/")
 public class HomeController {
 	@RequestMapping
 	public String welcome(Model model, RedirectAttributes redAttrs) {
@@ -17,6 +17,6 @@ public class HomeController {
 		model.addAttribute("tagline", tagline);
 		redAttrs.addFlashAttribute("greeting", greeting);
 		redAttrs.addFlashAttribute("tagline", tagline);
-		return "photos";
+		return "main";
 	}
 }

@@ -15,7 +15,7 @@ public class RootApplicationContextConfig {
 	public DataSource dataSource() {
 		DriverManagerDataSource ds = new DriverManagerDataSource();
 		ds.setDriverClassName(org.mariadb.jdbc.Driver.class.getName());
-		ds.setUrl("jdbc:mariadb://localhost:3305/webstore"); //3305
+		ds.setUrl("jdbc:mariadb://localhost:3306/cyworld");
 		ds.setUsername("tester");
 		ds.setPassword("1234");
 		return ds;

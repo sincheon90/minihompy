@@ -13,7 +13,7 @@ Tiles Configuration 3.0//EN"
 		<put-attribute name="leftIntro" value="/WEB-INF/layouts/template/leftIntro.jsp" />
 	</definition>
 	
-	<definition name="welcome" extends="baseLayout">
+	<definition name="main" extends="baseLayout">
 		<put-attribute name="title" value="tiles.welcome.title" />
 		<put-attribute name="heading" value="" />
 		<put-attribute name="tagline" value="tiles.welcome.tagline" />
@@ -23,7 +23,7 @@ Tiles Configuration 3.0//EN"
 	<definition name="photos" extends="baseLayout">
 		<put-attribute name="title" value="tiles.photos.title" />
 		<put-attribute name="heading" value="" />
-		<put-attribute name="tagline" value="tiles.welcome.tagline" />
+		<put-attribute name="tagline" value="" />
 		<put-attribute name="content" value="/WEB-INF/views/photos.jsp"/>
 	</definition>
 	
