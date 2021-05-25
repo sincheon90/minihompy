@@ -81,6 +81,15 @@ public class PhotoRepositoryImpl implements PhotoRepository {
 	}
 
 	@Override
+	public String getLatestPhotosId() {
+		String SQL = "select * from cyworld.photos order by id desc limit 1";
+		Map<String, Object> params = new HashMap<String, Object>();
+		Photo photo = jdbcTemplate.queryForObject(SQL, params, new PhotoMapper());
+		String result = Integer.toString(photo.getId());
+		return result;
+	}
+
+	@Override
 	public void updatePhotos(Photo photo) {
 		// TODO Auto-generated method stub
 
@@ -91,5 +100,7 @@ public class PhotoRepositoryImpl implements PhotoRepository {
 		// TODO Auto-generated method stub
 
 	}
+	
+	
 
 }

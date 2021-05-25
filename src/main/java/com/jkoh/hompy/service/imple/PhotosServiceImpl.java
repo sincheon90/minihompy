@@ -42,6 +42,12 @@ public class PhotosServiceImpl implements PhotosService {
 	}
 
 	@Override
+	public String getLatestPhotosId() {
+		// TODO Auto-generated method stub
+		return photoRepository.getLatestPhotosId();
+	}
+
+	@Override
 	public void updatePhotos(Photo photo) {
 		// TODO Auto-generated method stub
 

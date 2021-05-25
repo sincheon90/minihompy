@@ -11,6 +11,7 @@ public interface PhotosService {
 	List<Photo> getAllPhotos();
 	void updatePhotos(Photo photo);
 	void deletePhotos(Photo photo);
+	String getLatestPhotosId();
 	
 	List<PhotoFile> getPhotoFileById(int id);
 }

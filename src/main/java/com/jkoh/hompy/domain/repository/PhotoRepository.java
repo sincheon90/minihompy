@@ -12,5 +12,6 @@ public interface PhotoRepository {
 	List<Photo> getPhotosByFilter(Map<String, List<String>> filterParams);
 	void updatePhotos(Photo photo);
 	void deletePhotos(Photo photo);
+	String getLatestPhotosId();
 	
 }

@@ -1,15 +1,63 @@
 [MEMO]
 
-[jstl 이중 forEach]
-<c:forEach items="${list }" var="excelList">
-         <tr>
-          <c:forEach items="${excelList }" var="i">
-          <td>${i }</td>
-          </c:forEach>
-         </tr>
-        </c:forEach>
-[출처] [Jstl] 이중 forEach|작성자 onandme
+[5/25]
+- 결국 페이징 처리에 따라서 sql문도 결정 된다. rownum을 쓰던지 안 쓰던지
+- photos > 댓글
+- photos > 2개 -> 3개
+- photos > 역순
+	_id 값을 최신 id 값으로
+	getAllPhoto id 최대값?
+	or sql에서 가장 큰 id값
+	
+	id -1 도 그 다음 id 값
+	(삭제해서 중간에 번호가 비었을때 를 대비)
+	or if file이 없으면 다음번호
+	
+	그냥 sql로 가장 최근 3개 id 불러오기
+
+- 형변환 int String 
+	int to = Integer.parseInt(from);
+	String to = Integer.toString(from);
+	출처: https://nota.tistory.com/49 [nota's story]
+
+- select * from cyworld.photos order by id desc limit 5;
+	select * from cyworld.photos order by id desc limit 0, 5;
+
+- select row_number() over (order by p.id desc) as row_num, p.*
+	from cyworld.photos p limit 0, 3;
+
+	select row_number() over (order by p.id desc) as row_num, p.*
+	from cyworld.photos p limit 3, 3;
 
 
-[]photoRepositoryImpl > getAllPhotos > params.put "photoFile" 값이 안들어감 
+-JSTL에서 변수두개사용하기
+	서버에서 넘어오는 리스트가 두개일경우 예를들어
+	
+	<c:forEach var="list1" items="${list1}" var="list2" items="${list2}">
+	    ${list1.name}
+	    ${list2.name}
+	</c:forEach>
+	
+	위 코드처럼 두개이상의 리스트가넘어오거나 변수를 사용하고싶다면 이렇게하면된다.
+	
+	<c:forEach var="list1" items="${list1}" varStatus="status">
+	    ${list1.name}
+	    ${list2[status.index].name}
+	</c:forEach>
+	이런식으로하면 두개의 변수도 사용가능하다.
+
+
+[5/24]
+- jstl 이중 forEach
+	<c:forEach items="${list }" var="excelList">
+	         <tr>
+	          <c:forEach items="${excelList }" var="i">
+	          <td>${i }</td>
+	          </c:forEach>
+	         </tr>
+	        </c:forEach>
+	[출처] [Jstl] 이중 forEach|작성자 onandme
+
+
+- photoRepositoryImpl > getAllPhotos > params.put "photoFile" 값이 안들어감 
 

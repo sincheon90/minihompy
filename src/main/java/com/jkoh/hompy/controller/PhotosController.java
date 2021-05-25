@@ -27,15 +27,15 @@ public class PhotosController {
 	}
 	
 	@RequestMapping("photosContent")
-	public String photosContent(HttpServletRequest request, @RequestParam(value = "id", defaultValue="1") String id, Model model, Photo photo) {
+	public String photosContent(HttpServletRequest request, @RequestParam(value = "id", required=false) String id, Model model, Photo photo) {
 		String _id =  request.getParameter("id");
-		if (_id == null) _id = "1";
+		if (_id == null) _id = photosService.getLatestPhotosId();
 		List<PhotoFile> photoFile = photosService.getPhotoFileById(Integer.parseInt(_id));
 		model.addAttribute("photo", photosService.getPhotoById(Integer.parseInt(_id)));
 		model.addAttribute("photoFile", photoFile);
 		
-		List<PhotoFile> photoFile2 = photosService.getPhotoFileById(Integer.parseInt(_id)+1);
-		model.addAttribute("photo2", photosService.getPhotoById(Integer.parseInt(_id)+1));
+		List<PhotoFile> photoFile2 = photosService.getPhotoFileById(Integer.parseInt(_id)-1);
+		model.addAttribute("photo2", photosService.getPhotoById(Integer.parseInt(_id)-1));
 		model.addAttribute("photoFile2", photoFile2);
 		
 		System.out.println(photo.toString());
