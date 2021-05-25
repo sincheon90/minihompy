@@ -7,7 +7,6 @@
 
 	<center><img src="<c:url value='/img/bar.jpg'/>" width="420" height="6" border="0" alt=""></center>
 	
-	<c:forEach items="${photo}" var="photo">
 		<table border="0" width="420" cellpadding="1" cellspacing="1" align="center">
 			<tr>
 				<td align="center"> 
@@ -31,23 +30,26 @@
 			<tr>
 				<td>
 					<a name="n8"></a>
-					<font face="굴림" style="font-size:9pt;"><b>${photo.title}</b></font>
+					<font face="굴림" style="font-size:9pt;"><b><%-- ${photo.title} --%></b></font>
 				</td>
 			</tr>
 		</table>
 		<table border="0" align="center" width="420" cellpadding="1" cellspacing="1">
 			<tr>
 				<td width="100">  
-					<font face="굴림" style="font-size:9pt;">${photo.writer}</font>
+					<font face="굴림" style="font-size:9pt;"><%-- ${photo.writer} --%></font>
 				</td>
 				<td align="right">  
-					<font face="굴림" style="font-size:9pt;">스크랩 : ${photo.scrap_count}</font>
+					<font face="굴림" style="font-size:9pt;">스크랩 : <%-- ${photo.scrap_count} --%></font>
 				</td>
 			</tr>
 			<tr>
 				<td colspan="2" align="center">  
+					사진
 					<!-- 사진 바꾸기 -->
-					<a href="<c:url value='/img/${photo.photos_files_id}'/>" target="_blank"> <img src="<c:url value='/img/${photos.photos_files_id}'/>" width="400" height="300" border="0" alt=""></a>
+					<c:forEach items="${photoFile}" var="photoFile">
+					<a href="<c:url value='/img/${photoFile.num}.jpg'/>" target="_blank"> <img src="<c:url value='/img/${photoFile.num}.jpg'/>" width="400" height="300" border="0" alt=""></a>
+					</c:forEach>
 					<!-- --------- -->
 				</td>
 			</tr>
@@ -55,7 +57,7 @@
 				<td colspan="2">  
 					<font face="굴림" style="font-size:9pt;">
 					<!-- 내용 바꾸기 -->
-						${photo.contents}
+						<%-- ${photo.contents} --%>
 					<!-- 네용 엔터 어떻게 할까? -->
 					</font>
 					<!----------  -->
@@ -69,9 +71,9 @@
 						<tr>
 							<td> 
 								<font face="굴림" style="font-size:9pt;">
-									출처 : 네이버<br/>
-									작성자 : 장인수<br/>
-									작성일 : 2008.02.28 3:45<br/>
+									출처 : 장인수님의 미니홈피<br/>
+									작성자 : <%-- ${photo.writer} --%><br/>
+									작성일 : <%-- ${photo.regdate} --%><br/>
 									공개설정 : 공개<br/>
 								</font>
 							</td>
@@ -100,7 +102,6 @@
 		</table>
 		<!-- 사진 끝 ----------------------------------------------------------------------------------------------- -->
 		<br/><br/><br/>
-	</c:forEach>
 	
 
 	<!-- 방명록 아랫부분 글 검색 부분 ------------------------------------------------------------ -->

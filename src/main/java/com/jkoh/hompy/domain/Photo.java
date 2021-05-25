@@ -1,6 +1,7 @@
 package com.jkoh.hompy.domain;
 
 import java.util.Date;
+import java.util.List;
 
 public class Photo {
 	private int id;
@@ -9,9 +10,13 @@ public class Photo {
 	private String contents;
 	private Date regdate;
 	private int scrap_count;
-	private double photos_files_id;
+	private List<PhotoFile> photoFile;
 	private double photos_comments_id;
 	
+	@Override
+	public String toString() {
+		return "Photo [id=" + id + ", photo_file=" + photoFile + "]";
+	}
 	public int getId() {
 		return id;
 	}	
@@ -49,11 +54,11 @@ public class Photo {
 	public void setScrap_count(int scrap_count) {
 		this.scrap_count = scrap_count;
 	}
-	public double getPhotos_files_id() {
-		return photos_files_id;
+	public List<PhotoFile> getPhotoFile() {
+		return photoFile;
 	}
-	public void setPhotos_files_id(double photos_files_id) {
-		this.photos_files_id = photos_files_id;
+	public void setPhotoFile(List<PhotoFile> photoFile) {
+		this.photoFile = photoFile;
 	}
 	public double getPhotos_comments_id() {
 		return photos_comments_id;
