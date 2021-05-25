@@ -121,7 +121,7 @@ body
 						</td>
 						<td  height="40">
 							<br>
-							<font face="굴림"><span style="font-size:13pt;font-weight:bold"><center><font color="#4B9687">님의 미니 홈피</font></center></span></font>
+							<font face="굴림"><span style="font-size:13pt;font-weight:bold"><center><font color="#4B9687">오정권님의 미니 홈피</font></center></span></font>
 						</td>
 						<td></td>
 					</tr>
@@ -143,6 +143,8 @@ body
 							<table border =0 width="480" height="450" background="./images/bg_center_rect.jpg">
 							<tr><td >
 								<tiles:insertAttribute name="content" />
+								<tiles:insertAttribute name="content2" />
+								<tiles:insertAttribute name="content3" />
 							</td></tr>
 							</table>
 							</div>
