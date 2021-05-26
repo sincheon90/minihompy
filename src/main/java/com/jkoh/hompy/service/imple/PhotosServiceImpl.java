@@ -1,5 +1,6 @@
 package com.jkoh.hompy.service.imple;
 
+import java.sql.SQLException;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -42,9 +43,9 @@ public class PhotosServiceImpl implements PhotosService {
 	}
 
 	@Override
-	public String getLatestPhotosId() {
+	public int getPhotosIdByRownum(int rownum) {
 		// TODO Auto-generated method stub
-		return photoRepository.getLatestPhotosId();
+		return photoRepository.getPhotosIdByRownum(rownum);
 	}
 
 	@Override

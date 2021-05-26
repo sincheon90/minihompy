@@ -1,5 +1,6 @@
 package com.jkoh.hompy.controller;
 
+import java.sql.SQLException;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -22,25 +23,28 @@ public class PhotosController {
 	private PhotosService photosService;
 	
 	@RequestMapping("photos")
-	public String list(@RequestParam(value = "id", required=false) String id, Model model, Photo photo) {
-		return "photos";
-	}
-	
-	@RequestMapping("photosContent")
-	public String photosContent(HttpServletRequest request, @RequestParam(value = "id", required=false) String id, Model model, Photo photo) {
-		String _id =  request.getParameter("id");
-		if (_id == null) _id = photosService.getLatestPhotosId();
-		List<PhotoFile> photoFile = photosService.getPhotoFileById(Integer.parseInt(_id));
-		model.addAttribute("photo", photosService.getPhotoById(Integer.parseInt(_id)));
-		model.addAttribute("photoFile", photoFile);
+	public String photosContent(HttpServletRequest request, @RequestParam(value = "page", required=false) String page, Model model, Photo photo) throws SQLException {
+
+		String _page =  request.getParameter("page");
+		if (_page == null) _page = "1";
+		int rownum = Integer.parseInt(_page)*3-2;
 		
-		List<PhotoFile> photoFile2 = photosService.getPhotoFileById(Integer.parseInt(_id)-1);
-		model.addAttribute("photo2", photosService.getPhotoById(Integer.parseInt(_id)-1));
+		//photo 1
+		model.addAttribute("photo", photosService.getPhotoById(rownum));
+		List<PhotoFile> photoFile = photosService.getPhotoFileById(photosService.getPhotosIdByRownum(rownum));
+		model.addAttribute("photoFile", photoFile);
+
+		//photo 2
+		model.addAttribute("photo2", photosService.getPhotoById(rownum+1));
+		List<PhotoFile> photoFile2 = photosService.getPhotoFileById(photosService.getPhotosIdByRownum(rownum+1));
 		model.addAttribute("photoFile2", photoFile2);
 		
-		System.out.println(photo.toString());
-		System.out.println(photoFile.toString());
-		return "photosContent";
+		//photo 3
+		model.addAttribute("photo3", photosService.getPhotoById(rownum+2));
+		List<PhotoFile> photoFile3 = photosService.getPhotoFileById(photosService.getPhotosIdByRownum(rownum+2));
+		model.addAttribute("photoFile3", photoFile3);
+		
+		return "photos";
 	}
 
 }

@@ -1,6 +1,7 @@
 package com.jkoh.hompy.domain.repository.impl;
 
 import java.sql.ResultSet;
+import java.sql.SQLDataException;
 import java.sql.SQLException;
 import java.util.HashMap;
 import java.util.List;
@@ -53,10 +54,11 @@ public class PhotoRepositoryImpl implements PhotoRepository {
 	}
 
 	@Override
-	public Photo getPhotoById(int id) { //writer?
-		String SQL = "select * from cyworld.photos where id=:id";
+	public Photo getPhotoById(int rownum) {
+		String SQL = "select row_number() over (order by p.id desc) as rownum, p.* "
+				+ "from cyworld.photos p limit "+ (rownum-1) +", 1";
 		Map<String, Object> params = new HashMap<String, Object>();
-		params.put("id", id);
+		params.put("rownum", rownum);
 		//params.put("photoFile", photoFileRepository.getPhotoFileById(id));		
 		return jdbcTemplate.queryForObject(SQL, params, new PhotoMapper());
 	}
@@ -81,12 +83,13 @@ public class PhotoRepositoryImpl implements PhotoRepository {
 	}
 
 	@Override
-	public String getLatestPhotosId() {
-		String SQL = "select * from cyworld.photos order by id desc limit 1";
+	public int getPhotosIdByRownum(int rownum){
+		String SQL =  "select row_number() over (order by p.id desc) as rownum, p.* "
+				+ "from cyworld.photos p limit "+ (rownum-1) +", 1";
 		Map<String, Object> params = new HashMap<String, Object>();
-		Photo photo = jdbcTemplate.queryForObject(SQL, params, new PhotoMapper());
-		String result = Integer.toString(photo.getId());
-		return result;
+		Photo result = jdbcTemplate.queryForObject(SQL, params, new PhotoMapper());
+		int id = result.getId();
+		return id;
 	}
 
 	@Override

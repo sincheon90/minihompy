@@ -1,5 +1,6 @@
 package com.jkoh.hompy.service;
 
+import java.sql.SQLException;
 import java.util.List;
 
 import com.jkoh.hompy.domain.Photo;
@@ -11,7 +12,7 @@ public interface PhotosService {
 	List<Photo> getAllPhotos();
 	void updatePhotos(Photo photo);
 	void deletePhotos(Photo photo);
-	String getLatestPhotosId();
+	int getPhotosIdByRownum(int rownum);
 	
 	List<PhotoFile> getPhotoFileById(int id);
 }

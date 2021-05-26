@@ -1,5 +1,6 @@
 package com.jkoh.hompy.domain.repository;
 
+import java.sql.SQLException;
 import java.util.List;
 import java.util.Map;
 
@@ -12,6 +13,6 @@ public interface PhotoRepository {
 	List<Photo> getPhotosByFilter(Map<String, List<String>> filterParams);
 	void updatePhotos(Photo photo);
 	void deletePhotos(Photo photo);
-	String getLatestPhotosId();
+	int getPhotosIdByRownum(int rownum);
 	
 }

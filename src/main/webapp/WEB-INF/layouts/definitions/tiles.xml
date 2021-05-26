@@ -29,25 +29,4 @@ Tiles Configuration 3.0//EN"
 		<put-attribute name="content" value="/WEB-INF/views/photos.jsp"/>
 	</definition>
 	
-	<definition name="photosContent" extends="baseLayout">
-		<put-attribute name="title" value="" />
-		<put-attribute name="heading" value="" />
-		<put-attribute name="tagline" value="" />
-		<put-attribute name="content" value="/WEB-INF/views/photosContent.jsp"/>
-	</definition>
-	
-	<definition name="photosContent2" extends="baseLayout">
-		<put-attribute name="title" value="" />
-		<put-attribute name="heading" value="" />
-		<put-attribute name="tagline" value="" />
-		<put-attribute name="content2" value="/WEB-INF/views/photosContent2.jsp" />
-	</definition>
-	
-	<definition name="photosContent3" extends="baseLayout">
-		<put-attribute name="title" value="" />
-		<put-attribute name="heading" value="" />
-		<put-attribute name="tagline" value="" />
-		<put-attribute name="content3" value="/WEB-INF/views/photosContent.jsp" />
-	</definition>
-	
 </tiles-definitions>
