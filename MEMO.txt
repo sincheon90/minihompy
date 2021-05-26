@@ -1,19 +1,13 @@
 [MEMO]
 
-[5/25]
-- 결국 페이징 처리에 따라서 sql문도 결정 된다. rownum을 쓰던지 안 쓰던지
-- photos > 댓글
-- photos > 2개 -> 3개
-- photos > 역순
-	_id 값을 최신 id 값으로
-	getAllPhoto id 최대값?
-	or sql에서 가장 큰 id값
-	
-	id -1 도 그 다음 id 값
-	(삭제해서 중간에 번호가 비었을때 를 대비)
-	or if file이 없으면 다음번호
-	
-	그냥 sql로 가장 최근 3개 id 불러오기
+[5/26 W]
+photos> 사진내용 없으면 사진 틀 안 뜨게
+sql> 예외처리 출력값 없을 때도 진행 할 수 있게
+- start = 1 + 3*(page-1
+
+
+[5/25 T]
+photos> 댓글
 
 - 형변환 int String 
 	int to = Integer.parseInt(from);
@@ -21,7 +15,7 @@
 	출처: https://nota.tistory.com/49 [nota's story]
 
 - select * from cyworld.photos order by id desc limit 5;
-	select * from cyworld.photos order by id desc limit 0, 5;
+	= select * from cyworld.photos order by id desc limit 0, 5;
 
 - select row_number() over (order by p.id desc) as row_num, p.*
 	from cyworld.photos p limit 0, 3;
@@ -47,7 +41,7 @@
 	이런식으로하면 두개의 변수도 사용가능하다.
 
 
-[5/24]
+[5/24 M]
 - jstl 이중 forEach
 	<c:forEach items="${list }" var="excelList">
 	         <tr>
