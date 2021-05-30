@@ -22,6 +22,7 @@
 		<center><img src="<c:url value='/img/bar.jpg'/>" width="420" height="6" border="0" alt=""></center>
 		
 		<!-- 사진1 ----------------------------------------------------------------------------------------------- -->
+	<c:if test = "${photo ne null}">
 		<center><img src="<c:url value='/img/bar.jpg'/>" width="420" height="6" border="0" alt=""></center>
 		<table border="0" bgcolor="#EBEBEB" width="420" cellpadding="1" cellspacing="1" align="center">
 			<tr>
@@ -98,9 +99,11 @@
 				</td>
 			</tr>
 		</table>
+	</c:if>
 		<!-- 사진1 끝 ----------------------------------------------------------------------------------------------- -->
-		
+
  		<!-- 사진2 ----------------------------------------------------------------------------------------------- -->
+ 	<c:if test = "${photo2 ne null}">
 		<center><img src="<c:url value='/img/bar.jpg'/>" width="420" height="6" border="0" alt=""></center>
 		<table border="0" bgcolor="#EBEBEB" width="420" cellpadding="1" cellspacing="1" align="center">
 			<tr>
@@ -177,9 +180,11 @@
 				</td>
 			</tr>
 		</table>
+	</c:if>
 		<!-- 사진2 끝 ----------------------------------------------------------------------------------------------- --> 
 		
 		<!-- 사진3 ----------------------------------------------------------------------------------------------- -->
+	 <c:if test = "${photo3 ne null}">
 		<center><img src="<c:url value='/img/bar.jpg'/>" width="420" height="6" border="0" alt=""></center>
 		<table border="0" bgcolor="#EBEBEB" width="420" cellpadding="1" cellspacing="1" align="center">
 			<tr>
@@ -256,6 +261,7 @@
 				</td>
 			</tr>
 		</table>
+	</c:if>
 		<!-- 사진3 끝 ----------------------------------------------------------------------------------------------- --> 
 
 <!-- 방명록 아랫부분 글 검색 부분 ------------------------------------------------------------ -->

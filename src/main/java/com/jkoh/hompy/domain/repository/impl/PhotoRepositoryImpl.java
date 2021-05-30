@@ -15,6 +15,7 @@ import org.springframework.stereotype.Repository;
 
 import com.jkoh.hompy.domain.Photo;
 import com.jkoh.hompy.domain.repository.PhotoRepository;
+import com.jkoh.hompy.exception.PhotoNotFoundException;
 
 @Repository
 public class PhotoRepositoryImpl implements PhotoRepository {
@@ -60,7 +61,12 @@ public class PhotoRepositoryImpl implements PhotoRepository {
 		Map<String, Object> params = new HashMap<String, Object>();
 		params.put("rownum", rownum);
 		//params.put("photoFile", photoFileRepository.getPhotoFileById(id));		
-		return jdbcTemplate.queryForObject(SQL, params, new PhotoMapper());
+		try {
+			return jdbcTemplate.queryForObject(SQL, params, new PhotoMapper());
+		}catch (DataAccessException e) {
+			throw new PhotoNotFoundException();
+		}
+		
 	}
 
 	@Override
@@ -87,9 +93,17 @@ public class PhotoRepositoryImpl implements PhotoRepository {
 		String SQL =  "select row_number() over (order by p.id desc) as rownum, p.* "
 				+ "from cyworld.photos p limit "+ (rownum-1) +", 1";
 		Map<String, Object> params = new HashMap<String, Object>();
-		Photo result = jdbcTemplate.queryForObject(SQL, params, new PhotoMapper());
-		int id = result.getId();
-		return id;
+		try {
+			Photo result = jdbcTemplate.queryForObject(SQL, params, new PhotoMapper());
+			return result.getId();
+		} catch (Exception e) {
+			System.out.println("exception : photoId catch");
+			throw new PhotoNotFoundException();
+		}
+		finally{
+			return -1;
+		}
+		
 	}
 
 	@Override
