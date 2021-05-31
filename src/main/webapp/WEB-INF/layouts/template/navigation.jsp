@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core"  prefix="c"%>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 
 <img src="<c:url value='/img/m1.gif'/>" width="83" height="29" border="0" alt="홈 메뉴" onclick="menu_click_pagereload('./')"><br/><br/>

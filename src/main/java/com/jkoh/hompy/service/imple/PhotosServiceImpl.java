@@ -1,6 +1,5 @@
 package com.jkoh.hompy.service.imple;
 
-import java.sql.SQLException;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;

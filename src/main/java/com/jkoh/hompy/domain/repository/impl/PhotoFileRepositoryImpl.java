@@ -39,7 +39,7 @@ public class PhotoFileRepositoryImpl implements PhotoFileRepository {
 	public List<PhotoFile> getPhotoFileById(int photos_files_id) {
 		String SQL = "select * from cyworld.photos_files where photos_files_id=:photos_files_id";
 		Map<String, Object> params = new HashMap<String, Object>();
-		params.put("photos_files_id", photos_files_id);	
+		params.put("photos_files_id", photos_files_id);
 		List<PhotoFile> result = jdbcTemplate.query(SQL, params, new PhotoFileMapper());
 		return result;
 	}

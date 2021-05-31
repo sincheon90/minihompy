@@ -66,5 +66,6 @@
 			<artifactId>tiles-extras</artifactId>
 			<version>3.0.5</version>
 		</dependency>
+		
 	</dependencies>
 </project>

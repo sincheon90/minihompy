@@ -1,5 +1,5 @@
 <%@ page contentType="text/html; charset=utf-8" pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core"  prefix="c"%>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <%@ taglib prefix="tiles" uri="http://tiles.apache.org/tags-tiles"%>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
@@ -55,6 +55,7 @@ body
 	<!-- 미니 홈페이지 외각 테이블 -->
 	<table border="0" align="left" valign="top" width="850" height="550" bgcolor="#003366" cellspacing="0" cellpadding="0">
 		<tr>
+			<td>
 			<script language="javascript">
 				<!--
 					//---------------------------------------------------------------

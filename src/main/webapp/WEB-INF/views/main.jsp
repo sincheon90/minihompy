@@ -1,5 +1,5 @@
 <%@ page contentType="text/html; charset=utf-8" pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core"  prefix="c"%>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
 
@@ -20,8 +20,8 @@
 				
 				<table bgcolor="#DBDBDB" width="200" align="center" cellpadding="1" cellspacing="1">
 					<tr bgcolor="#FFFFFF" align="center">
-						<td><font face="굴림" style="font-size:9pt;"><a href="./r_home.html">홈</a></a></font></td>
-						<td><font face="굴림" style="font-size:9pt;"><a href="./r_profile.html">프로필</a></td>
+						<td><font face="굴림" style="font-size:9pt;"><a href="./r_home.html">홈</a></font></td>
+						<td><font face="굴림" style="font-size:9pt;"><a href="./r_profile.html">프로필</a></font></td>
 					</tr>
 					<tr bgcolor="#FFFFFF" align="center">
 						<td><font face="굴림" style="font-size:9pt;"><a href="./pics/r_pic_page2.html">사진첩</a></font></td>

@@ -1,5 +1,5 @@
-<%@ page contentType="text/html; charset=utf-8" pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ page isELIgnored="false" contentType = "text/html; charset=euc-kr" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core"  prefix="c" %>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
 <form name="photosContent">
@@ -8,89 +8,90 @@
 		<table border="0" width="420" cellpadding="1" cellspacing="1" align="center">
 			<tr>
 				<td align="center"> 
-					<font face="êµ´ë¦¼" style="font-size:9pt;">
-						í¼ì³ë³´ê¸° | ì‘ê²Œë³´ê¸° | ìŠ¬ë¼ì´ë“œ
+					<font face="±¼¸²" style="font-size:9pt;">
+						ÆîÃÄº¸±â | ÀÛ°Ôº¸±â | ½½¶óÀÌµå
 					</font>
 				</td>
 				<td align="right">
-					<input type="submit" value="ì‚¬ì§„ì¸í™”" onclick="javascript:alert('ì•„ì§ ì„œë¹„ìŠ¤ì¤‘ì´ì§€ ì•ŠìŠµë‹ˆë‹¤.')">
-					<input type="button" value="ì‚¬ì§„ì˜¬ë¦¬ê¸°" onclick="javascript:location.replace('./write.html')"/>
+					<input type="submit" value="»çÁøÀÎÈ­" onclick="javascript:alert('¾ÆÁ÷ ¼­ºñ½ºÁßÀÌÁö ¾Ê½À´Ï´Ù.')">
+					<input type="button" value="»çÁø¿Ã¸®±â" onclick="javascript:location.replace('./write.html')"/>
 					
 				</td>
 			</tr>
 		</table>
 		<center><img src="<c:url value='/img/bar.jpg'/>" width="420" height="6" border="0" alt=""></center>
 		
-		<!-- ì‚¬ì§„1 ----------------------------------------------------------------------------------------------- -->
-	<c:if test = "${photo ne null}">
+		<!-- »çÁø1 ----------------------------------------------------------------------------------------------- -->
+	<c:if test = "${photo1 ne null}">
 		<center><img src="<c:url value='/img/bar.jpg'/>" width="420" height="6" border="0" alt=""></center>
 		<table border="0" bgcolor="#EBEBEB" width="420" cellpadding="1" cellspacing="1" align="center">
 			<tr>
 				<td>
 					<a name="n8"></a>
-					<font face="êµ´ë¦¼" style="font-size:9pt;"><b>${photo.title}</b></font>
+					<font face="±¼¸²" style="font-size:9pt;"><b>${photo1.title}</b></font>
 				</td>
 			</tr>
 		</table>
 		<table border="0" align="center" width="420" cellpadding="1" cellspacing="1">
 			<tr>
 				<td width="100">  
-					<font face="êµ´ë¦¼" style="font-size:9pt;">${photo.writer}</font>
+					<font face="±¼¸²" style="font-size:9pt;">${photo1.writer}</font>
 				</td>
 				<td align="right">  
-					<font face="êµ´ë¦¼" style="font-size:9pt;">ìŠ¤í¬ë© : ${photo.scrap_count}</font>
+					<font face="±¼¸²" style="font-size:9pt;">½ºÅ©·¦ : ${photo1.scrap_count}</font>
 				</td>
 			</tr>
 			<tr>
 				<td colspan="2" align="center">  
-					ì‚¬ì§„
-					<!-- ì‚¬ì§„ ë°”ê¾¸ê¸° -->
-					<c:forEach items="${photoFile}" var="photoFile" varStatus="status">
-					<a href="<c:url value='/img/${photoFile.num}.jpg'/>" target="_blank"> <img src="<c:url value='/img/${photoFile.num}.jpg'/>" width="400" height="300" border="0" alt=""></a>
-					${photoFile.num}
+					»çÁø
+					<c:forEach items="${photoFile1}" var="photoFile1" varStatus="status">
+					<c:if test = "${photoFile1.num ne '0'}">
+					<a href="<c:url value='/img/${photoFile1.num}.jpg'/>" target="_blank"> <img src="<c:url value='/img/${photoFile1.num}.jpg'/>" width="400" height="300" border="0" alt=""></a>
+					${photoFile1.num}
+					</c:if>
 					</c:forEach>
-					<!-- --------- -->
+					
 				</td>
 			</tr>
 			<tr>
 				<td colspan="2">  
-					<font face="êµ´ë¦¼" style="font-size:9pt;">
-					<!-- ë‚´ìš© ë°”ê¾¸ê¸° -->
-						${photo.contents}
-					<!-- ë„¤ìš© ì—”í„° ì–´ë–»ê²Œ í• ê¹Œ? -->
+					<font face="±¼¸²" style="font-size:9pt;">
+					<!-- ³»¿ë ¹Ù²Ù±â -->
+						${photo1.contents}
+					<!-- ³×¿ë ¿£ÅÍ ¾î¶»°Ô ÇÒ±î? -->
 					</font>
 					<!----------  -->
 				</td>
 			</tr>
 			<tr>
 				<td colspan="2" align="center">  
-					<!-- ì‚¬ì§„ì²© ê¸€, ê¸€ ë°‘ ì •ë³´ ë¶€ë¶„--------------------------------------------------- -->
+					<!-- »çÁøÃ¸ ±Û, ±Û ¹Ø Á¤º¸ ºÎºĞ--------------------------------------------------- -->
 					<img src="<c:url value='/img/bar.jpg'/>" width="420" height="6" border="0" alt="">
 					<table border="0" width="400" align="center" cellpadding="0" cellspacing="0">
 						<tr>
 							<td> 
-								<font face="êµ´ë¦¼" style="font-size:9pt;">
-									ì¶œì²˜ : ì¥ì¸ìˆ˜ë‹˜ì˜ ë¯¸ë‹ˆí™ˆí”¼<br/>
-									ì‘ì„±ì : ${photo.writer}<br/>
-									ì‘ì„±ì¼ : ${photo.regdate}<br/>
-									ê³µê°œì„¤ì • : ê³µê°œ<br/>
+								<font face="±¼¸²" style="font-size:9pt;">
+									ÃâÃ³ : ÀåÀÎ¼ö´ÔÀÇ ¹Ì´ÏÈ¨ÇÇ<br/>
+									ÀÛ¼ºÀÚ : ${photo1.writer}<br/>
+									ÀÛ¼ºÀÏ : ${photo1.regdate}<br/>
+									°ø°³¼³Á¤ : °ø°³<br/>
 								</font>
 							</td>
 						</tr>
 						<tr>
 							<td align="right"> 
 								<img src="<c:url value='/img/bar.jpg'/>" width="420" height="6" border="0" alt=""><br/>
-								<font face="êµ´ë¦¼" style="font-size:9pt;">
-									<a onclick="javascript:alert('ìˆ˜ì • í–ˆìŠµë‹ˆë‹¤.')">ìˆ˜ì •</a> | 
-									<a onclick="javascript:alert('ì´ë™ í–ˆìŠµë‹ˆë‹¤.')">ì´ë™</a> | 
-									<a onclick="javascript:alert('ì‚­ì œ í–ˆìŠµë‹ˆë‹¤.')">ì‚­ì œ</a></font>
+								<font face="±¼¸²" style="font-size:9pt;">
+									<a onclick="javascript:alert('¼öÁ¤ Çß½À´Ï´Ù.')">¼öÁ¤</a> | 
+									<a onclick="javascript:alert('ÀÌµ¿ Çß½À´Ï´Ù.')">ÀÌµ¿</a> | 
+									<a onclick="javascript:alert('»èÁ¦ Çß½À´Ï´Ù.')">»èÁ¦</a></font>
 							</td>
 						</tr>
 						<tr>
 							<td align="center"> 
 								<br/>
-								<input type="text" name="commenti" size="50"></textarea>
-								<input type="button" name="comment_save" value="í™•ì¸" onclick="comment_ok()">
+								<input type="text" name="commenti" size="50">
+								<input type="button" name="comment_save" value="È®ÀÎ" onclick="comment_ok()">
 							</td>
 						</tr>
 					</table>
@@ -100,78 +101,78 @@
 			</tr>
 		</table>
 	</c:if>
-		<!-- ì‚¬ì§„1 ë ----------------------------------------------------------------------------------------------- -->
+		<!-- »çÁø1 ³¡ ----------------------------------------------------------------------------------------------- -->
 
- 		<!-- ì‚¬ì§„2 ----------------------------------------------------------------------------------------------- -->
+ 		<!-- »çÁø2 ----------------------------------------------------------------------------------------------- -->
  	<c:if test = "${photo2 ne null}">
 		<center><img src="<c:url value='/img/bar.jpg'/>" width="420" height="6" border="0" alt=""></center>
 		<table border="0" bgcolor="#EBEBEB" width="420" cellpadding="1" cellspacing="1" align="center">
 			<tr>
 				<td>
 					<a name="n8"></a>
-					<font face="êµ´ë¦¼" style="font-size:9pt;"><b>${photo2.title}</b></font>
+					<font face="±¼¸²" style="font-size:9pt;"><b>${photo2.title}</b></font>
 				</td>
 			</tr>
 		</table>
 		<table border="0" align="center" width="420" cellpadding="1" cellspacing="1">
 			<tr>
 				<td width="100">  
-					<font face="êµ´ë¦¼" style="font-size:9pt;">${photo2.writer}</font>
+					<font face="±¼¸²" style="font-size:9pt;">${photo2.writer}</font>
 				</td>
 				<td align="right">  
-					<font face="êµ´ë¦¼" style="font-size:9pt;">ìŠ¤í¬ë© : ${photo2.scrap_count}</font>
+					<font face="±¼¸²" style="font-size:9pt;">½ºÅ©·¦ : ${photo2.scrap_count}</font>
 				</td>
 			</tr>
 			<tr>
 				<td colspan="2" align="center">  
-					ì‚¬ì§„
-					<!-- ì‚¬ì§„ ë°”ê¾¸ê¸° -->
-					<c:forEach items="${photoFile}" var="photoFile" varStatus="status">
+					»çÁø
+					<c:forEach items="${photoFile1}" var="photoFile1" varStatus="status">
+					<c:if test = "${photoFile2[status.index].num ne null}">
 					<a href="<c:url value='/img/${photoFile2[status.index].num}.jpg'/>" target="_blank"> <img src="<c:url value='/img/${photoFile2[status.index].num}.jpg'/>" width="400" height="300" border="0" alt=""></a>
 					${photoFile2[status.index].num}
+					</c:if>
 					</c:forEach>
-					<!-- --------- -->
 				</td>
 			</tr>
 			<tr>
 				<td colspan="2">  
-					<font face="êµ´ë¦¼" style="font-size:9pt;">
-					<!-- ë‚´ìš© ë°”ê¾¸ê¸° -->
+					<font face="±¼¸²" style="font-size:9pt;">
+					<!-- ³»¿ë ¹Ù²Ù±â -->
 						${photo2.contents}
-					<!-- ë„¤ìš© ì—”í„° ì–´ë–»ê²Œ í• ê¹Œ? -->
+					<!-- ³×¿ë ¿£ÅÍ ¾î¶»°Ô ÇÒ±î? -->
 					</font>
 					<!----------  -->
 				</td>
 			</tr>
 			<tr>
 				<td colspan="2" align="center">  
-					<!-- ì‚¬ì§„ì²© ê¸€, ê¸€ ë°‘ ì •ë³´ ë¶€ë¶„--------------------------------------------------- -->
+					<!-- »çÁøÃ¸ ±Û, ±Û ¹Ø Á¤º¸ ºÎºĞ--------------------------------------------------- -->
 					<img src="<c:url value='/img/bar.jpg'/>" width="420" height="6" border="0" alt="">
 					<table border="0" width="400" align="center" cellpadding="0" cellspacing="0">
 						<tr>
 							<td> 
-								<font face="êµ´ë¦¼" style="font-size:9pt;">
-									ì¶œì²˜ : ì¥ì¸ìˆ˜ë‹˜ì˜ ë¯¸ë‹ˆí™ˆí”¼<br/>
-									ì‘ì„±ì : ${photo2.writer}<br/>
-									ì‘ì„±ì¼ : ${photo2.regdate}<br/>
-									ê³µê°œì„¤ì • : ê³µê°œ<br/>
+								<font face="±¼¸²" style="font-size:9pt;">
+									ÃâÃ³ : ÀåÀÎ¼ö´ÔÀÇ ¹Ì´ÏÈ¨ÇÇ<br/>
+									ÀÛ¼ºÀÚ : ${photo2.writer}<br/>
+									ÀÛ¼ºÀÏ : ${photo2.regdate}<br/>
+									°ø°³¼³Á¤ : °ø°³<br/>
 								</font>
 							</td>
 						</tr>
 						<tr>
 							<td align="right"> 
 								<img src="<c:url value='/img/bar.jpg'/>" width="420" height="6" border="0" alt=""><br/>
-								<font face="êµ´ë¦¼" style="font-size:9pt;">
-									<a onclick="javascript:alert('ìˆ˜ì • í–ˆìŠµë‹ˆë‹¤.')">ìˆ˜ì •</a> | 
-									<a onclick="javascript:alert('ì´ë™ í–ˆìŠµë‹ˆë‹¤.')">ì´ë™</a> | 
-									<a onclick="javascript:alert('ì‚­ì œ í–ˆìŠµë‹ˆë‹¤.')">ì‚­ì œ</a></font>
+								<font face="±¼¸²" style="font-size:9pt;">
+									<a onclick="javascript:alert('¼öÁ¤ Çß½À´Ï´Ù.')">¼öÁ¤</a> | 
+									<a onclick="javascript:alert('ÀÌµ¿ Çß½À´Ï´Ù.')">ÀÌµ¿</a> | 
+									<a onclick="javascript:alert('»èÁ¦ Çß½À´Ï´Ù.')">»èÁ¦</a></font>
 							</td>
 						</tr>
 						<tr>
 							<td align="center"> 
 								<br/>
-								<input type="text" name="commenti" size="50"></textarea>
-								<input type="button" name="comment_save" value="í™•ì¸" onclick="comment_ok()">
+								<input type="text" name="commenti" size="50">
+								<input type="button" name="comment_save" value="È®ÀÎ" onclick="comment_ok()">
 							</td>
 						</tr>
 					</table>
@@ -181,78 +182,80 @@
 			</tr>
 		</table>
 	</c:if>
-		<!-- ì‚¬ì§„2 ë ----------------------------------------------------------------------------------------------- --> 
+		<!-- »çÁø2 ³¡ ----------------------------------------------------------------------------------------------- --> 
 		
-		<!-- ì‚¬ì§„3 ----------------------------------------------------------------------------------------------- -->
+		<!-- »çÁø3 ----------------------------------------------------------------------------------------------- -->
 	 <c:if test = "${photo3 ne null}">
 		<center><img src="<c:url value='/img/bar.jpg'/>" width="420" height="6" border="0" alt=""></center>
 		<table border="0" bgcolor="#EBEBEB" width="420" cellpadding="1" cellspacing="1" align="center">
 			<tr>
 				<td>
 					<a name="n8"></a>
-					<font face="êµ´ë¦¼" style="font-size:9pt;"><b>${photo3.title}</b></font>
+					<font face="±¼¸²" style="font-size:9pt;"><b>${photo3.title}</b></font>
 				</td>
 			</tr>
 		</table>
 		<table border="0" align="center" width="420" cellpadding="1" cellspacing="1">
 			<tr>
 				<td width="100">  
-					<font face="êµ´ë¦¼" style="font-size:9pt;">${photo3.writer}</font>
+					<font face="±¼¸²" style="font-size:9pt;">${photo3.writer}</font>
 				</td>
 				<td align="right">  
-					<font face="êµ´ë¦¼" style="font-size:9pt;">ìŠ¤í¬ë© : ${photo3.scrap_count}</font>
+					<font face="±¼¸²" style="font-size:9pt;">½ºÅ©·¦ : ${photo3.scrap_count}</font>
 				</td>
 			</tr>
 			<tr>
 				<td colspan="2" align="center">  
-					ì‚¬ì§„
-					<!-- ì‚¬ì§„ ë°”ê¾¸ê¸° -->
-					<c:forEach items="${photoFile}" var="photoFile" varStatus="status">
-					<a href="<c:url value='/img/${photoFile3[status.index].num}.jpg'/>" target="_blank"> <img src="<c:url value='/img/${photoFile2[status.index].num}.jpg'/>" width="400" height="300" border="0" alt=""></a>
+					»çÁø
+					<!-- »çÁø ¹Ù²Ù±â -->
+					<c:forEach items="${photoFile1}" var="photoFile1" varStatus="status">
+					<c:if test = "${photoFile3[status.index].num ne null}">
+					<a href="<c:url value='/img/${photoFile3[status.index].num}.jpg'/>" target="_blank"> <img src="<c:url value='/img/${photoFile3[status.index].num}.jpg'/>" width="400" height="300" border="0" alt=""></a>
 					${photoFile3[status.index].num}
+					</c:if>
 					</c:forEach>
 					<!-- --------- -->
 				</td>
 			</tr>
 			<tr>
 				<td colspan="2">  
-					<font face="êµ´ë¦¼" style="font-size:9pt;">
-					<!-- ë‚´ìš© ë°”ê¾¸ê¸° -->
+					<font face="±¼¸²" style="font-size:9pt;">
+					<!-- ³»¿ë ¹Ù²Ù±â -->
 						${photo3.contents}
-					<!-- ë„¤ìš© ì—”í„° ì–´ë–»ê²Œ í• ê¹Œ? -->
+					<!-- ³×¿ë ¿£ÅÍ ¾î¶»°Ô ÇÒ±î? -->
 					</font>
 					<!----------  -->
 				</td>
 			</tr>
 			<tr>
 				<td colspan="2" align="center">  
-					<!-- ì‚¬ì§„ì²© ê¸€, ê¸€ ë°‘ ì •ë³´ ë¶€ë¶„--------------------------------------------------- -->
+					<!-- »çÁøÃ¸ ±Û, ±Û ¹Ø Á¤º¸ ºÎºĞ--------------------------------------------------- -->
 					<img src="<c:url value='/img/bar.jpg'/>" width="420" height="6" border="0" alt="">
 					<table border="0" width="400" align="center" cellpadding="0" cellspacing="0">
 						<tr>
 							<td> 
-								<font face="êµ´ë¦¼" style="font-size:9pt;">
-									ì¶œì²˜ : ì¥ì¸ìˆ˜ë‹˜ì˜ ë¯¸ë‹ˆí™ˆí”¼<br/>
-									ì‘ì„±ì : ${photo3.writer}<br/>
-									ì‘ì„±ì¼ : ${photo3.regdate}<br/>
-									ê³µê°œì„¤ì • : ê³µê°œ<br/>
+								<font face="±¼¸²" style="font-size:9pt;">
+									ÃâÃ³ : ÀåÀÎ¼ö´ÔÀÇ ¹Ì´ÏÈ¨ÇÇ<br/>
+									ÀÛ¼ºÀÚ : ${photo3.writer}<br/>
+									ÀÛ¼ºÀÏ : ${photo3.regdate}<br/>
+									°ø°³¼³Á¤ : °ø°³<br/>
 								</font>
 							</td>
 						</tr>
 						<tr>
 							<td align="right"> 
 								<img src="<c:url value='/img/bar.jpg'/>" width="420" height="6" border="0" alt=""><br/>
-								<font face="êµ´ë¦¼" style="font-size:9pt;">
-									<a onclick="javascript:alert('ìˆ˜ì • í–ˆìŠµë‹ˆë‹¤.')">ìˆ˜ì •</a> | 
-									<a onclick="javascript:alert('ì´ë™ í–ˆìŠµë‹ˆë‹¤.')">ì´ë™</a> | 
-									<a onclick="javascript:alert('ì‚­ì œ í–ˆìŠµë‹ˆë‹¤.')">ì‚­ì œ</a></font>
+								<font face="±¼¸²" style="font-size:9pt;">
+									<a onclick="javascript:alert('¼öÁ¤ Çß½À´Ï´Ù.')">¼öÁ¤</a> | 
+									<a onclick="javascript:alert('ÀÌµ¿ Çß½À´Ï´Ù.')">ÀÌµ¿</a> | 
+									<a onclick="javascript:alert('»èÁ¦ Çß½À´Ï´Ù.')">»èÁ¦</a></font>
 							</td>
 						</tr>
 						<tr>
 							<td align="center"> 
 								<br/>
-								<input type="text" name="commenti" size="50"></textarea>
-								<input type="button" name="comment_save" value="í™•ì¸" onclick="comment_ok()">
+								<input type="text" name="commenti" size="50">
+								<input type="button" name="comment_save" value="È®ÀÎ" onclick="comment_ok()">
 							</td>
 						</tr>
 					</table>
@@ -262,27 +265,27 @@
 			</tr>
 		</table>
 	</c:if>
-		<!-- ì‚¬ì§„3 ë ----------------------------------------------------------------------------------------------- --> 
+		<!-- »çÁø3 ³¡ ----------------------------------------------------------------------------------------------- --> 
 
-<!-- ë°©ëª…ë¡ ì•„ë«ë¶€ë¶„ ê¸€ ê²€ìƒ‰ ë¶€ë¶„ ------------------------------------------------------------ -->
+<!-- ¹æ¸í·Ï ¾Æ·§ºÎºĞ ±Û °Ë»ö ºÎºĞ ------------------------------------------------------------ -->
 	<table align="center" border="0" cellpadding="1" cellspacing="1">
 		<tr height="30">
 			<td align="center" >
-				<font face="êµ´ë¦¼" style="font-size:9pt;">
-					<a href="./r_pic_page2.html"><img src="../images/left_arr.gif" width="12" height="13" border="0" alt="ì´ì „ í˜ì´ì§€ë¡œ"></a>
+				<font face="±¼¸²" style="font-size:9pt;">
+					<a href="./r_pic_page2.html"><img src="../images/left_arr.gif" width="12" height="13" border="0" alt="ÀÌÀü ÆäÀÌÁö·Î"></a>
 					page <a href="./r_pic_page2.html">2</a> <a href="./r_pic_page1.html">1</a>
-					<a href="./r_pic_page1.html"><img src="../images/right_arr.gif" width="12" height="13" border="0" alt="ë‹¤ìŒ í˜ì´ì§€ë¡œ"></a>
+					<a href="./r_pic_page1.html"><img src="../images/right_arr.gif" width="12" height="13" border="0" alt="´ÙÀ½ ÆäÀÌÁö·Î"></a>
 					</font>	
 			</td>
 		</tr>
 		<tr>
 			<td align="center">  
 				<select name="find">
-					<option value="find_name">ì´ë¦„ìœ¼ë¡œ ê²€ìƒ‰</option>
-					<option value="find_name">ë‚´ìš©ìœ¼ë¡œ ê²€ìƒ‰</option>
+					<option value="find_name">ÀÌ¸§À¸·Î °Ë»ö</option>
+					<option value="find_name">³»¿ëÀ¸·Î °Ë»ö</option>
 				</select>
 				<input type="text" name="fils_words" size="15"/>
-				<input type="submit" value="í™•ì¸"/>
+				<input type="submit" value="È®ÀÎ"/>
 			</td>
 		</tr>
 	</table>

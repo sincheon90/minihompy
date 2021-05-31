@@ -1,7 +1,6 @@
 package com.jkoh.hompy.domain.repository.impl;
 
 import java.sql.ResultSet;
-import java.sql.SQLDataException;
 import java.sql.SQLException;
 import java.util.HashMap;
 import java.util.List;
@@ -33,7 +32,6 @@ public class PhotoRepositoryImpl implements PhotoRepository {
 			photo.setContents(rs.getString("contents"));
 			photo.setRegdate(rs.getDate("regdate"));
 			photo.setScrap_count(rs.getInt("scrap_count"));
-			//photo.setPhotoFile(new PhotoFileRepositoryImpl().getPhotoFileById(rs.getInt("id")));
 			return photo;
 		}
 	}
@@ -45,7 +43,6 @@ public class PhotoRepositoryImpl implements PhotoRepository {
 		Map<String, Object> params = new HashMap<String, Object>();
 		params.put("title", photo.getTitle());
 		params.put("contents", photo.getContents());
-		//photoFileRepository.addPhotoFile(photo.getId());
 //		try {
 			jdbcTemplate.update(SQL, params);
 //		} catch (DataAccessException e) {
@@ -59,8 +56,7 @@ public class PhotoRepositoryImpl implements PhotoRepository {
 		String SQL = "select row_number() over (order by p.id desc) as rownum, p.* "
 				+ "from cyworld.photos p limit "+ (rownum-1) +", 1";
 		Map<String, Object> params = new HashMap<String, Object>();
-		params.put("rownum", rownum);
-		//params.put("photoFile", photoFileRepository.getPhotoFileById(id));		
+		params.put("rownum", rownum);	
 		try {
 			return jdbcTemplate.queryForObject(SQL, params, new PhotoMapper());
 		}catch (DataAccessException e) {
@@ -73,7 +69,6 @@ public class PhotoRepositoryImpl implements PhotoRepository {
 	public List<Photo> getAllPhotos() {
 		String SQL = "select * from cyworld.photos";
 		Map<String, Object> params = new HashMap<String, Object>();
-		//params.put("photo_file", photoFileRepository.getAllPhotoFile());		
 		List<Photo> result = jdbcTemplate.query(SQL, params, new PhotoMapper());
 		return result;
 	}
@@ -97,13 +92,9 @@ public class PhotoRepositoryImpl implements PhotoRepository {
 			Photo result = jdbcTemplate.queryForObject(SQL, params, new PhotoMapper());
 			return result.getId();
 		} catch (Exception e) {
-			System.out.println("exception : photoId catch");
 			throw new PhotoNotFoundException();
 		}
-		finally{
-			return -1;
-		}
-		
+
 	}
 
 	@Override

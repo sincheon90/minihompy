@@ -13,7 +13,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.jkoh.hompy.domain.Photo;
 import com.jkoh.hompy.domain.PhotoFile;
 import com.jkoh.hompy.exception.PhotoNotFoundException;
 import com.jkoh.hompy.service.PhotosService;
@@ -32,30 +31,22 @@ public class PhotosController {
 		if (_page == null) _page = "1";
 		int rownum = Integer.parseInt(_page)*3-2;
 		
-		//photo 1 : 없으면 페이지 자체가 안뜨게 3개 전체를 리스트로 담아서 보내기 hashmap? -> view에서 foreach로 부르면 없는 데이터는 안부름
-		Photo photo = photosService.getPhotoById(rownum);
-		model.addAttribute("photo", photo);
-		//else return 전 페이지;
-		List<PhotoFile> photoFile = photosService.getPhotoFileById(photosService.getPhotosIdByRownum(rownum));
-		model.addAttribute("photoFile", photoFile);
-
-		//photo 2 : 없으면 안뜨게 파일이 없으면 -1을 반환 0보다 작으면 띄우지 않기 
-		try {
-			Photo photo2 = photosService.getPhotoById(rownum+1);
-			model.addAttribute("photo2", photo2);
-			List<PhotoFile> photoFile2 = photosService.getPhotoFileById(photosService.getPhotosIdByRownum(rownum+1));
-			model.addAttribute("photoFile2", photoFile2);
-		} catch (Exception e) {
-			return "photos";
-		}
-		
-		//photo 3
-		try {
-			model.addAttribute("photo3", photosService.getPhotoById(rownum+2));
-			List<PhotoFile> photoFile3 = photosService.getPhotoFileById(photosService.getPhotosIdByRownum(rownum+2));
-			model.addAttribute("photoFile3", photoFile3);
-		} catch (Exception e) {
-			return "photos";
+		for(int i=0; i<=2; i++) {
+			try {
+				model.addAttribute("photo"+(i+1), photosService.getPhotoById(rownum+i));
+				List<PhotoFile> photoFile = photosService.getPhotoFileById(photosService.getPhotosIdByRownum(rownum+i));
+				if (photoFile == null || photoFile.isEmpty()) {
+					for(int j=0; j<=5; j++) {
+						photoFile.add(j, new PhotoFile("0","0"));
+					}
+					System.out.println(photoFile);
+				}
+				model.addAttribute("photoFile"+(i+1), photoFile);
+				
+			} catch (Exception e) {
+				return "photos";
+				
+			}
 		}
 		return "photos";
 	}

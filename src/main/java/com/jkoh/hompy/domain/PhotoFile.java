@@ -4,6 +4,13 @@ public class PhotoFile {
 	private String num;
 	private String photos_files_id;
 	
+	public PhotoFile() {}
+	
+	public PhotoFile(String num, String photos_files_id) {
+		super();
+		this.num = num;
+		this.photos_files_id = photos_files_id;
+	}
 	@Override
 	public String toString() {
 		return "PhotoFile [num=" + num + ", photos_files_id=" + photos_files_id + "]";
