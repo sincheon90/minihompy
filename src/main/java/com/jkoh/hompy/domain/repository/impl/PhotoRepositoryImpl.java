@@ -96,6 +96,14 @@ public class PhotoRepositoryImpl implements PhotoRepository {
 		}
 
 	}
+	
+	@Override
+	public int countPhotos() {
+		String SQL =  "select count(*) from cyworld.photos";
+		Map<String, Object> params = new HashMap<String, Object>();
+		int result = jdbcTemplate.queryForObject(SQL, params, Integer.class);
+		return result;
+	}
 
 	@Override
 	public void updatePhotos(Photo photo) {

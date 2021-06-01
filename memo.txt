@@ -2,9 +2,10 @@
 photos> 페이징 처리, 다음 페이지 내용 없으면 전 페이지
 photos> 댓글
 
-
-[5/31 M]
-
+[6/1 Tu]
+- 페이징 https://po9357.github.io/spring/2019-05-28-Board_Paging/
+- this.jdbcTemplate.queryForObject(
+                    sql, new Object[] { parameter1,parameter2 }, Integer.class);
 [5/30 Sun]
 - 예외 처리
 - "${name ne null}"

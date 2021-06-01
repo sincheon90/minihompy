@@ -14,4 +14,5 @@ public interface PhotosService {
 	int getPhotosIdByRownum(int rownum);
 	
 	List<PhotoFile> getPhotoFileById(int id);
+	int countPhotos();
 }

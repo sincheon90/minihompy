@@ -13,5 +13,6 @@ public interface PhotoRepository {
 	void updatePhotos(Photo photo);
 	void deletePhotos(Photo photo);
 	int getPhotosIdByRownum(int rownum);
+	int countPhotos();
 	
 }

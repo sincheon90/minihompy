@@ -43,8 +43,12 @@ public class PhotosServiceImpl implements PhotosService {
 
 	@Override
 	public int getPhotosIdByRownum(int rownum) {
-		// TODO Auto-generated method stub
 		return photoRepository.getPhotosIdByRownum(rownum);
+	}
+
+	@Override
+	public int countPhotos() {
+		return photoRepository.countPhotos();
 	}
 
 	@Override

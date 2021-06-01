@@ -126,10 +126,10 @@
 			<tr>
 				<td colspan="2" align="center">  
 					사진
-					<c:forEach items="${photoFile1}" var="photoFile1" varStatus="status">
-					<c:if test = "${photoFile2[status.index].num ne null}">
-					<a href="<c:url value='/img/${photoFile2[status.index].num}.jpg'/>" target="_blank"> <img src="<c:url value='/img/${photoFile2[status.index].num}.jpg'/>" width="400" height="300" border="0" alt=""></a>
-					${photoFile2[status.index].num}
+					<c:forEach items="${photoFile2}" var="photoFile2" varStatus="status">
+					<c:if test = "${photoFile2.num ne null || photoFile2.num ne '0'}">
+					<a href="<c:url value='/img/${photoFile2.num}.jpg'/>" target="_blank"> <img src="<c:url value='/img/${photoFile2.num}.jpg'/>" width="400" height="300" border="0" alt=""></a>
+					${photoFile2.num}
 					</c:if>
 					</c:forEach>
 				</td>
@@ -208,10 +208,10 @@
 				<td colspan="2" align="center">  
 					사진
 					<!-- 사진 바꾸기 -->
-					<c:forEach items="${photoFile1}" var="photoFile1" varStatus="status">
-					<c:if test = "${photoFile3[status.index].num ne null}">
-					<a href="<c:url value='/img/${photoFile3[status.index].num}.jpg'/>" target="_blank"> <img src="<c:url value='/img/${photoFile3[status.index].num}.jpg'/>" width="400" height="300" border="0" alt=""></a>
-					${photoFile3[status.index].num}
+					<c:forEach items="${photoFile3}" var="photoFile3" varStatus="status">
+					<c:if test = "${photoFile3.num ne null ||photoFile3.num ne '0'}">
+					<a href="<c:url value='/img/${photoFile3.num}.jpg'/>" target="_blank"> <img src="<c:url value='/img/${photoFile3.num}.jpg'/>" width="400" height="300" border="0" alt=""></a>
+					${photoFile3.num}
 					</c:if>
 					</c:forEach>
 					<!-- --------- -->
@@ -266,18 +266,41 @@
 		</table>
 	</c:if>
 		<!-- 사진3 끝 ----------------------------------------------------------------------------------------------- --> 
+		
+		
 
-<!-- 방명록 아랫부분 글 검색 부분 ------------------------------------------------------------ -->
+	<!-- 방명록 아랫부분 글 검색 부분 ------------------------------------------------------------ -->
 	<table align="center" border="0" cellpadding="1" cellspacing="1">
-		<tr height="30">
-			<td align="center" >
-				<font face="굴림" style="font-size:9pt;">
-					<a href="./r_pic_page2.html"><img src="../images/left_arr.gif" width="12" height="13" border="0" alt="이전 페이지로"></a>
-					page <a href="./r_pic_page2.html">2</a> <a href="./r_pic_page1.html">1</a>
-					<a href="./r_pic_page1.html"><img src="../images/right_arr.gif" width="12" height="13" border="0" alt="다음 페이지로"></a>
-					</font>	
+	
+		<!-- 페이징 -------------------------------------------------->
+		<tr>
+			<td style="display: block; text-align: center;">
+			<font face="굴림" style="font-size:9pt;">
+			
+				<c:if test="${paging.startPage != 1 }">
+					<a href="/hompy/photos?page=${paging.startPage - 1 }">&lt;</a>
+				</c:if>
+				
+				<c:forEach begin="${paging.startPage }" end="${paging.endPage }" var="p">
+					<c:choose>
+						<c:when test="${p == paging.nowPage }">
+							<b>${p }</b>
+						</c:when>
+						<c:when test="${p != paging.nowPage }">
+							<a href="/hompy/photos?page=${p }">${p }</a>
+						</c:when>
+					</c:choose>
+				</c:forEach>
+				
+				<c:if test="${paging.endPage != paging.lastPage}">
+					<a href="/hompy/photos?page=${paging.endPage+1 }">&gt;</a>
+				</c:if>
+			</font>	
 			</td>
 		</tr>
+		
+		<!-- 페이징 끝 -------------------------------------------------->		
+		
 		<tr>
 			<td align="center">  
 				<select name="find">
@@ -289,7 +312,7 @@
 			</td>
 		</tr>
 	</table>
-		<!-- ---------- ------------------------------------------------------------ -->
+	<!--  방명록 아랫부분 글 검색 부분 끝 ---------- ------------------------------------------------------------ -->
 	<br/>
 
 
