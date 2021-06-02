@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.jkoh.hompy.domain.PhotoComment;
 import com.jkoh.hompy.domain.PhotoFile;
 import com.jkoh.hompy.exception.PhotoNotFoundException;
 import com.jkoh.hompy.service.PhotosService;
@@ -33,7 +34,6 @@ public class PhotosController {
 		String _page =  request.getParameter("page");
 		if (_page == null) _page = "1";
 		int rownum = Integer.parseInt(_page)*3-2;
-		
 		int total = photosService.countPhotos();
 		int cntPerPage = 3;
 		PagingVO vo = new PagingVO(total, Integer.parseInt(_page), cntPerPage);
@@ -45,27 +45,26 @@ public class PhotosController {
 				///////// 사진 게시물 내용
 				model.addAttribute("photo"+(i+1), photosService.getPhotoById(rownum+i));
 				
-				////////// 사진 게시물의 사진 파일
-				List<PhotoFile> photoFile = photosService.getPhotoFileById(photosService.getPhotosIdByRownum(rownum+i));
-			
-//				if (photoFile == null || photoFile.isEmpty()) {
-//					////////// 사진 파일 내용이 가상의 포토파일 리스트를 만든다. 사진파일은 5개까지 가능
-//					for(int j=0; j<=5; j++) {
-//						photoFile.add(j, new PhotoFile("0","0"));
-//					}
-//				}
-				
-				model.addAttribute("photoFile"+(i+1), photoFile);
-				
+				int photoId = photosService.getPhotosIdByRownum(rownum+i);
+				List<PhotoFile> photoFile = photosService.getPhotoFileById(photoId);				
+				List<PhotoComment> photoComment = photosService.getCommentByPhotoId(photoId);
+				model.addAttribute("photoFile"+(i+1), photoFile);				
+				model.addAttribute("photoComment"+(i+1), photoComment);
 			} catch (Exception e) {
 				return "photos";
 			}
 		}
 		return "photos";
-		
-		
-		
 	}
+	
+//	 댓글입력 컨트롤러 
+//	@RequestMapping(value = "/photos/addNewComment", method = RequestMethod.POST)
+//	public String addNewCommnet(Model model, @RequestParam(value="newComment", required=false) Comment newComment) {
+//		댓글 입력 버튼 -> 하얀 댓글 입력창 
+//	-> 댓글입력 컨트롤러-처리 후 -> photos 창 원위치. 리다이렉트로 가능?
+//	}
+	 
+
 	
 	@ExceptionHandler(PhotoNotFoundException.class)
 	public ModelAndView handleError(HttpServletRequest req, PhotoNotFoundException exception, Model model) {
@@ -76,6 +75,8 @@ public class PhotosController {
 		mav.setViewName("photos");
 		return mav;
 	}
+	
+	
 
 
 }

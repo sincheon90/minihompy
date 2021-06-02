@@ -1,6 +1,55 @@
 [memo.txt]
-photos> 페이징 처리, 다음 페이지 내용 없으면 전 페이지
-photos> 댓글
+photos> 사진글 게시화면 디자인, 사진 첨부
+
+[6/2, W]
+- with jstl error 500
+	https://www.programmersought.com/article/60733912862/
+
+-addPhotosController
+@RequestMapping(value = "/photos/add", method = RequestMethod.GET)
+	public String getAddNewPhotosForm(Model model) {
+		Photo newPhotos = new Photo();
+		model.addAttribute("newPhotos", newPhotos);
+		return "addPhotos";
+	}
+@RequestMapping(value = "/photos/add", method = RequestMethod.POST)
+	public String processAddNewPhotoForm(Model model,
+			@ModelAttribute("newPhoto") @Valid Photo newPhoto,
+			BindingResult result, HttpServletRequest request) {
+		if (result.hasErrors()) {
+			return "addPhoto";
+		}
+
+		try {
+			String[] suppressedFields = result.getSuppressedFields();
+			if (suppressedFields.length > 0) {
+				throw new RuntimeException(
+						"허용되지 않은 항목을 엮어오려고함: " + StringUtils.arrayToCommaDelimitedString(suppressedFields));
+			} else {
+				/**
+				 * 상품 영상 메모리 내용 정한 폴더에 파일로 보관
+				 */
+				MultipartFile PhotoImage = newPhoto.getPhotoImage();
+				String rootDirectory = request.getSession().getServletContext().getRealPath("/");
+				if (PhotoImage != null && !PhotoImage.isEmpty()) {
+					try {
+						PhotoImage.transferTo(
+								new File(rootDirectory + "resources\\images\\" + newPhoto.getPhotoId() + ".png"));
+					} catch (Exception e) {
+						throw new RuntimeException("Photo Image saving failed", e);
+					}
+				}
+				
+				photosService.addPhoto(newPhoto);
+			}
+			return "redirect:/photos";
+		} catch (DataAccessException e) {
+			String msg = e.getMessage();
+			int idx = msg.lastIndexOf("Duplicate");
+			model.addAttribute("errorMsg", msg.substring(idx));
+			return "addPhoto";
+		}
+	}
 
 [6/1 Tu]
 - 페이징 https://po9357.github.io/spring/2019-05-28-Board_Paging/
@@ -67,5 +116,5 @@ photos> 댓글
 	[출처] [Jstl] 이중 forEach|작성자 onandme
 
 
-- photoRepositoryImpl > getAllPhotos > params.put "photoFile" 값이 안들어감 
+- photoRepositoryImpl > getAllPhotos > params.put "photoFile" 값이 안들어감
 

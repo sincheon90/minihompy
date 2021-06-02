@@ -10,8 +10,6 @@ Tiles Configuration 3.0//EN"
 		<put-attribute name="tagline" value="" />
 		<put-attribute name="navigation" value="/WEB-INF/layouts/template/navigation.jsp" />
 		<put-attribute name="content" value="" />
-		<put-attribute name="content2" value="" />
-		<put-attribute name="content3" value="" />
 		<put-attribute name="leftIntro" value="/WEB-INF/layouts/template/leftIntro.jsp" />
 	</definition>
 	

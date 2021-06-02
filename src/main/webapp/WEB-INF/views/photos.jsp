@@ -88,10 +88,27 @@
 							</td>
 						</tr>
 						<tr>
+							<!-- 댓글 입력 -->
 							<td align="center"> 
 								<br/>
-								<input type="text" name="commenti" size="50">
-								<input type="button" name="comment_save" value="확인" onclick="comment_ok()">
+								<input type="text" name="comment" size="50">
+								<input type="submit" name="comment_save" value="확인" onclick="comment_ok()">
+							</td>					
+							<!-- 댓글 목록 -->				
+							<!-- if 댓글이 있으면 -->
+						</tr>
+						<tr>
+							<td>
+								<font face="굴림" style="font-size:9pt;">
+								<!-- 백그라운드 색 : 회색,
+									리스트의 길이에 따라 배경도 같이 늘어날 수 있게 -->
+								댓글<br/>
+								<c:forEach items="${photoComment1}" var="photoComment1" varStatus="status">
+								<c:if test = "${photoComment1.num ne null || photoComment1.num ne '0'}">
+								<font color="#000099">${photoComment1.writer} :</font> ${photoComment1.comment} <br/>
+								</c:if>
+								</c:forEach>
+								</font>
 							</td>
 						</tr>
 					</table>
@@ -169,10 +186,24 @@
 							</td>
 						</tr>
 						<tr>
+							<!-- 댓글 입력 -->
 							<td align="center"> 
 								<br/>
-								<input type="text" name="commenti" size="50">
-								<input type="button" name="comment_save" value="확인" onclick="comment_ok()">
+								<input type="text" name="comment" size="50">
+								<input type="submit" name="comment_save" value="확인" onclick="comment_ok()">
+							</td>					
+							<!-- 댓글 목록 -->				
+							<!-- if 댓글이 있으면 -->
+						</tr>
+						<tr>
+							<td>
+								<font face="굴림" style="font-size:9pt;">
+									<c:forEach items="${photoComment2}" var="photoComment2" varStatus="status">
+										<c:if test = "${photoComment2.num ne null || photoComment2.num ne '0'}">
+											<font color="#000099">${photoComment2.writer} :</font> ${photoComment2.comment} <br/>
+										</c:if>
+									</c:forEach>
+								</font>
 							</td>
 						</tr>
 					</table>
@@ -252,10 +283,22 @@
 							</td>
 						</tr>
 						<tr>
+							<!-- 댓글 입력 -->
 							<td align="center"> 
 								<br/>
-								<input type="text" name="commenti" size="50">
-								<input type="button" name="comment_save" value="확인" onclick="comment_ok()">
+								<input type="text" name="comment" size="50">
+								<input type="submit" name="comment_save" value="확인" onclick="comment_ok()">
+							</td>
+						</tr>
+						<tr>
+							<td>
+								<font face="굴림" style="font-size:9pt;">
+									<c:forEach items="${photoComment3}" var="photoComment3" varStatus="status">
+										<c:if test = "${photoComment3.num ne null || photoComment3.num ne '0'}">
+											<font color="#000099">${photoComment3.writer} :</font> ${photoComment3.comment} <br/>
+										</c:if>
+									</c:forEach>
+								</font>
 							</td>
 						</tr>
 					</table>

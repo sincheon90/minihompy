@@ -6,7 +6,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.jkoh.hompy.domain.Photo;
+import com.jkoh.hompy.domain.PhotoComment;
 import com.jkoh.hompy.domain.PhotoFile;
+import com.jkoh.hompy.domain.repository.PhotoCommentRepository;
 import com.jkoh.hompy.domain.repository.PhotoFileRepository;
 import com.jkoh.hompy.domain.repository.PhotoRepository;
 import com.jkoh.hompy.service.PhotosService;
@@ -18,7 +20,10 @@ public class PhotosServiceImpl implements PhotosService {
 	private PhotoRepository photoRepository; 
 	
 	@Autowired
-	private PhotoFileRepository photoFileRepository; 
+	private PhotoFileRepository photoFileRepository;
+
+	@Autowired
+	private PhotoCommentRepository photoCommentRepository;
 	
 	@Override
 	public List<PhotoFile> getPhotoFileById(int id) {
@@ -61,6 +66,11 @@ public class PhotosServiceImpl implements PhotosService {
 	public void deletePhotos(Photo photo) {
 		// TODO Auto-generated method stub
 
+	}
+
+	@Override
+	public List<PhotoComment> getCommentByPhotoId(int photoId) {
+		return photoCommentRepository.getCommentByPhotoId(photoId);
 	}
 
 }

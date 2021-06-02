@@ -25,7 +25,7 @@ pageEncoding="UTF-8"%>
 			<td>
 				<table bgcolor="#DBDBDB" width="130" cellpadding="1" cellspacing="1">
 					<tr bgcolor="#FFFFFF">
-						<td bg><img src="<c:url value='/img/left_my.jpg'/>" width="128" height="110" border="0" alt="left_my.jpg"/></td>
+						<td><img src="<c:url value='/img/left_my.jpg'/>" width="128" height="110" border="0" alt="left_my.jpg"/></td>
 					</tr>
 				</table>
 			</td>

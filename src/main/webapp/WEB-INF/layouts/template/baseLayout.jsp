@@ -120,9 +120,10 @@ body
 							<br>
 							<font face="굴림"><span style="font-size:8pt;">today 9999  total 9999</span></font>
 						</td>
-						<td  height="40">
+						<td  height="40" align="center">
 							<br>
-							<font face="굴림"><span style="font-size:13pt;font-weight:bold"><center><font color="#4B9687">오정권님의 미니 홈피</font></center></span></font>
+							<font face="굴림"><span style="font-size:13pt;font-weight:bold">
+							<font color="#4B9687">오정권님의 미니 홈피</font></span></font>
 						</td>
 						<td></td>
 					</tr>
@@ -130,26 +131,28 @@ body
 						<td width="10"> </td>
 
 						<td width="178" height="450" background="<c:url value='/img/bg_left_rect.jpg'/>">
-
-							<!-- 왼쪽 내용 부분 ----------------------------------------------------------- -->
+							<!-- 왼쪽 날개 부분 ----------------------------------------------------------- -->
 							<center>
 								<!-- <iframe frameborder="0" width="160" height="440" src="./left_intro.html" /> -->
 								<tiles:insertAttribute name="leftIntro" />
 							</center>
-							<!-- ---------------------------------------------------------------------------- -->
-
+							<!-- 왼쪽 날개 부분 끝---------------------------------------------------------------------------- -->
 						</td>
+						
+						<!-- 내용 ----------------------------------------------------------------------------->
 						<td>
 							<div style="overflow:auto; width:480px; height:450px;">
-							<table border =0 width="480" height="450" background="./images/bg_center_rect.jpg">
-							<tr><td >
-								<tiles:insertAttribute name="content" />
-								<tiles:insertAttribute name="content2" />
-								<tiles:insertAttribute name="content3" />
-							</td></tr>
-							</table>
+								<table border =0 width="480" height="450" background="">
+									<tr>
+										<td >
+											<tiles:insertAttribute name="content" />
+										</td>
+									</tr>
+								</table>
 							</div>
 						</td>
+						<!-- 내용 끝----------------------------------------------------------------------------->
+						
 						<!-- 오른쪽 메뉴 부분 ----------------------------------------------------------- -->
 						<td>
 							<tiles:insertAttribute name="navigation" />
