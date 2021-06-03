@@ -14,7 +14,7 @@
 				</td>
 				<td align="right">
 					<input type="submit" value="사진인화" onclick="javascript:alert('아직 서비스중이지 않습니다.')">
-					<input type="button" value="사진올리기" onclick="javascript:location.replace('./write.html')"/>
+					<input type="button" value="사진올리기" onclick="javascript:void(window.open('./photos/add', '사진 올리기','width=300, height=400'))"/>
 					
 				</td>
 			</tr>
