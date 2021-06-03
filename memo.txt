@@ -1,7 +1,5 @@
 [memo.txt]
 
-addPhotos> 저장 위치 지정
-addPhotos> photos/add 새창에서 띄우기
 addPhotos> 수정, 삭제 추가
 addPhotos> 여러장 올리기
 photos_comment> 댓글 입력 수정 삭제

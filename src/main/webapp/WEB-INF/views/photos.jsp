@@ -46,7 +46,7 @@
 					사진
 					<c:forEach items="${photoFile1}" var="photoFile1" varStatus="status">
 					<c:if test = "${photoFile1.num ne '0'}">
-					<a href="<c:url value='/img/${photoFile1.num}.jpg'/>" target="_blank"> <img src="<c:url value='/img/${photoFile1.num}.jpg'/>" width="400" height="300" border="0" alt=""></a>
+					<a href="<c:url value='/img/${photoFile1.num}.png'/>" target="_blank"> <img src="<c:url value='/img/${photoFile1.num}.png'/>" width="400" height="300" border="0" alt=""></a>
 					${photoFile1.num}
 					</c:if>
 					</c:forEach>
@@ -145,7 +145,7 @@
 					사진
 					<c:forEach items="${photoFile2}" var="photoFile2" varStatus="status">
 					<c:if test = "${photoFile2.num ne null && photoFile2.num ne '0'}">
-					<a href="<c:url value='/img/${photoFile2.num}.jpg'/>" target="_blank"> <img src="<c:url value='/img/${photoFile2.num}.jpg'/>" width="400" height="300" border="0" alt=""></a>
+					<a href="<c:url value='/img/${photoFile2.num}.png'/>" target="_blank"> <img src="<c:url value='/img/${photoFile2.num}.png'/>" width="400" height="300" border="0" alt=""></a>
 					${photoFile2.num}
 					</c:if>
 					</c:forEach>
@@ -241,7 +241,7 @@
 					<!-- 사진 바꾸기 -->
 					<c:forEach items="${photoFile3}" var="photoFile3" varStatus="status">
 					<c:if test = "${photoFile3.num ne null && photoFile3.num ne '0'}">
-					<a href="<c:url value='/img/${photoFile3.num}.jpg'/>" target="_blank"> <img src="<c:url value='/img/${photoFile3.num}.jpg'/>" width="400" height="300" border="0" alt=""></a>
+					<a href="<c:url value='/img/${photoFile3.num}.png'/>" target="_blank"> <img src="<c:url value='/img/${photoFile3.num}.png'/>" width="400" height="300" border="0" alt=""></a>
 					${photoFile3.num}
 					</c:if>
 					</c:forEach>

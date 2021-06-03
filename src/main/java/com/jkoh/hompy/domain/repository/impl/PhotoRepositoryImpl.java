@@ -47,7 +47,7 @@ public class PhotoRepositoryImpl implements PhotoRepository {
 		try {
 			jdbcTemplate.update(SQL, params);
 		} catch (DataAccessException e) {
-
+			System.out.println(e);
 		}
 
 	}

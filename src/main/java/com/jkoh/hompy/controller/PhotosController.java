@@ -100,22 +100,23 @@ public class PhotosController {
 				 */
 				newPhoto.setId(photosService.getPhotosIdByRownum(1)+1); // newPhoto.getId()를 가지고 add photoFile
 				
-				int photoFileNum = photosService.getPhotoFileNumByRownum(1)+1 ;
-				photosService.addPhotoFile(newPhoto.getId(), photoFileNum);
-				
 				String rootDirectory = request.getSession().getServletContext().getRealPath("/"); // 사진 파일 저장 위치 변경				
 				MultipartFile photoImage = newPhoto.getPhotoImage();
 				if (photoImage != null && !photoImage.isEmpty()) {
 					try {
+						// 포토파일 데이터 추가
+						int photoFileNum = photosService.getPhotoFileNumByRownum(1)+1 ;
+						photosService.addPhotoFile(newPhoto.getId(), photoFileNum);
+						
 						photoImage.transferTo(
-								new File(rootDirectory + "resources\\images\\" + photoFileNum + ".png"));
+								new File(rootDirectory + "resources\\images\\" + photoFileNum + ".png"));						
 					} catch (Exception e) {
 						throw new RuntimeException("Photo Image saving failed", e);
 					}
 				}
 				photosService.addPhoto(newPhoto);
 			}
-			return "redirect:/photos";
+			return "addPhotosDone";
 			
 		} catch (DataAccessException e) {
 			String msg = e.getMessage();
