@@ -37,17 +37,18 @@ public class PhotoRepositoryImpl implements PhotoRepository {
 	}
 
 	@Override
-	public void addPhotos(Photo photo) throws DataAccessException{
-		String SQL = "insert into cyworld.photos (title, contents)"
-				+ " values (:title, :contents, :photos_files_id);";
+	public void addPhoto(Photo photo) throws DataAccessException{
+		String SQL = "insert into cyworld.photos (writer, title, contents)"
+				+ " values (:writer, :title, :contents);";
 		Map<String, Object> params = new HashMap<String, Object>();
+		params.put("writer", photo.getWriter());
 		params.put("title", photo.getTitle());
 		params.put("contents", photo.getContents());
-//		try {
+		try {
 			jdbcTemplate.update(SQL, params);
-//		} catch (DataAccessException e) {
-//
-//		}
+		} catch (DataAccessException e) {
+
+		}
 
 	}
 

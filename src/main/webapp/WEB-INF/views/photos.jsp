@@ -104,7 +104,7 @@
 									리스트의 길이에 따라 배경도 같이 늘어날 수 있게 -->
 								댓글<br/>
 								<c:forEach items="${photoComment1}" var="photoComment1" varStatus="status">
-								<c:if test = "${photoComment1.num ne null || photoComment1.num ne '0'}">
+								<c:if test = "${photoComment1.num ne null && photoComment1.num ne '0'}">
 								<font color="#000099">${photoComment1.writer} :</font> ${photoComment1.comment} <br/>
 								</c:if>
 								</c:forEach>
@@ -144,7 +144,7 @@
 				<td colspan="2" align="center">  
 					사진
 					<c:forEach items="${photoFile2}" var="photoFile2" varStatus="status">
-					<c:if test = "${photoFile2.num ne null || photoFile2.num ne '0'}">
+					<c:if test = "${photoFile2.num ne null && photoFile2.num ne '0'}">
 					<a href="<c:url value='/img/${photoFile2.num}.jpg'/>" target="_blank"> <img src="<c:url value='/img/${photoFile2.num}.jpg'/>" width="400" height="300" border="0" alt=""></a>
 					${photoFile2.num}
 					</c:if>
@@ -199,7 +199,7 @@
 							<td>
 								<font face="굴림" style="font-size:9pt;">
 									<c:forEach items="${photoComment2}" var="photoComment2" varStatus="status">
-										<c:if test = "${photoComment2.num ne null || photoComment2.num ne '0'}">
+										<c:if test = "${photoComment2.num ne null && photoComment2.num ne '0'}">
 											<font color="#000099">${photoComment2.writer} :</font> ${photoComment2.comment} <br/>
 										</c:if>
 									</c:forEach>
@@ -240,7 +240,7 @@
 					사진
 					<!-- 사진 바꾸기 -->
 					<c:forEach items="${photoFile3}" var="photoFile3" varStatus="status">
-					<c:if test = "${photoFile3.num ne null ||photoFile3.num ne '0'}">
+					<c:if test = "${photoFile3.num ne null && photoFile3.num ne '0'}">
 					<a href="<c:url value='/img/${photoFile3.num}.jpg'/>" target="_blank"> <img src="<c:url value='/img/${photoFile3.num}.jpg'/>" width="400" height="300" border="0" alt=""></a>
 					${photoFile3.num}
 					</c:if>
@@ -294,7 +294,7 @@
 							<td>
 								<font face="굴림" style="font-size:9pt;">
 									<c:forEach items="${photoComment3}" var="photoComment3" varStatus="status">
-										<c:if test = "${photoComment3.num ne null || photoComment3.num ne '0'}">
+										<c:if test = "${photoComment3.num ne null && photoComment3.num ne '0'}">
 											<font color="#000099">${photoComment3.writer} :</font> ${photoComment3.comment} <br/>
 										</c:if>
 									</c:forEach>

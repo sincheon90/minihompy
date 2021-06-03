@@ -7,7 +7,7 @@ import com.jkoh.hompy.domain.PhotoComment;
 import com.jkoh.hompy.domain.PhotoFile;
 
 public interface PhotosService {
-	void addPhotos(Photo photo);
+	void addPhoto(Photo photo);
 	Photo getPhotoById(int id);
 	List<Photo> getAllPhotos();
 	void updatePhotos(Photo photo);
@@ -18,4 +18,7 @@ public interface PhotosService {
 	int countPhotos();
 	
 	List<PhotoComment> getCommentByPhotoId(int photoId);
+	
+	void addPhotoFile(int id, int photoFileNum);
+	int getPhotoFileNumByRownum(int rownum);
 }

@@ -6,7 +6,7 @@ import java.util.Map;
 import com.jkoh.hompy.domain.Photo;
 
 public interface PhotoRepository {
-	void addPhotos(Photo photo);
+	void addPhoto(Photo photo);
 	Photo getPhotoById(int id);
 	List<Photo> getAllPhotos();
 	List<Photo> getPhotosByFilter(Map<String, List<String>> filterParams);

@@ -1,30 +1,33 @@
-<%@ page isELIgnored="false" contentType = "text/html; charset=euc-kr" %>
+<%@ page isELIgnored="false" contentType = "text/html; charset=UTF-8" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core"  prefix="c" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
-
-	<form:form method="POST" modelAttribute="addPhotos" onsubmit="return validateUnits(this)"
+<html>
+<head>
+<title>ì‚¬ì§„ê¸€ ê²Œì‹œ</title>
+</head>
+<body>
+<form:form method="POST" modelAttribute="newPhoto" onsubmit="return validateUnits(this)"
 		class="form-horizontal" enctype="multipart/form-data">		
 		<form:errors path="*" cssClass="alert alert-danger" element="div" />
 		
 		<fieldset>
-			<legend>»çÁø±Û °Ô½Ã</legend>
+			<legend>ì‚¬ì§„ê¸€ ê²Œì‹œ</legend>
 			<span>${errorMsg}</span>
 			
 			<div class="form-group">
 				<label class="control-label col-lg-2 col-lg-2" for="writer">
-					ÀÛ¼ºÀÚ
+					ìž‘ì„±ìž
 				</label>
 				<div class="col-lg-10">
-					<form:input id="writer" path="writer" type="text"
-						class="form:input-large" />
-					<form:errors path="writer" cssClass="text-danger" />
+					<form:input id="writer" path="writer" type="text" class="form:input-large" />
+					<%-- <form:errors path="writer" cssClass="text-danger" /> --%>
 				</div>
 			</div>			
 			<div class="form-group">
 				<label class="control-label col-lg-2 col-lg-2" for="title">
-					Á¦¸ñ
+					ì œëª©
 				</label>
 				<div class="col-lg-10">
 					<form:input id="title" path="title" type="text"
@@ -34,18 +37,18 @@
 			</div>			
 			<div class="form-group">
 				<label class="control-label col-lg-2" for="contents">
-					³»¿ë
+					ë‚´ìš©
 				</label>
 				<div class="col-lg-10">
 					<form:textarea id="contents" path="contents" rows="5" />
 				</div>
 			</div>			
 			<div>
-				<label class="control-label col-lg-2" for="productManual">
-					»çÁø ÆÄÀÏ
+				<label class="control-label col-lg-2" for="photoImage">
+					ì‚¬ì§„ íŒŒì¼
 				</label>
 				<div class="col-lg-10">
-					<form:input id="photoFile" path="photoFile" type="file"	class="form:input-large" />
+					<form:input id="photoImage" path="photoImage" type="file"	class="form:input-large" />
 				</div>
 			</div>
 			
@@ -66,26 +69,29 @@
 		}
 	</script>
 	
-				<<!-- input type="submit" value="È®ÀÎ"/>
+				<!-- input type="submit" value="í™•ì¸"/>
 			
-			<input type="submit" value="»çÁøÀÎÈ­" onclick="javascript:alert('¾ÆÁ÷ ¼­ºñ½ºÁßÀÌÁö ¾Ê½À´Ï´Ù.')">
-			<input type="button" value="»çÁø¿Ã¸®±â" onclick="javascript:location.replace('./write.html')"/>
+			<input type="submit" value="ì‚¬ì§„ì¸í™”" onclick="javascript:alert('ì•„ì§ ì„œë¹„ìŠ¤ì¤‘ì´ì§€ ì•ŠìŠµë‹ˆë‹¤.')">
+			<input type="button" value="ì‚¬ì§„ì˜¬ë¦¬ê¸°" onclick="javascript:location.replace('./write.html')"/>
 		
 			<input type="text" name="commenti" size="50">
-			<input type="button" name="comment_save" value="È®ÀÎ" onclick="comment_ok()">
+			<input type="button" name="comment_save" value="í™•ì¸" onclick="comment_ok()">
 		
 			
 		
 			<select name="find">
-				<option value="find_name">ÀÌ¸§À¸·Î °Ë»ö</option>
-				<option value="find_name">³»¿ëÀ¸·Î °Ë»ö</option>
+				<option value="find_name">ì´ë¦„ìœ¼ë¡œ ê²€ìƒ‰</option>
+				<option value="find_name">ë‚´ìš©ìœ¼ë¡œ ê²€ìƒ‰</option>
 			</select>
 			
 			<input type="text" name="fils_words" size="15"/>
-			<input type="submit" value="È®ÀÎ"/>
+			<input type="submit" value="í™•ì¸"/>
 		
-			ÀÛ¼ºÀÚ : <input type="text" name="writer" size="50">
-			Á¦¸ñ : <input type="text" name="title" size="50">
-			³»¿ë : <input type="text" name="contents" size="50"> -->
+			ìž‘ì„±ìž : <input type="text" name="writer" size="50">
+			ì œëª© : <input type="text" name="title" size="50">
+			ë‚´ìš© : <input type="text" name="contents" size="50"> -->
 	
 					
+</body>
+</html>
+	

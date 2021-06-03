@@ -3,6 +3,8 @@ package com.jkoh.hompy.domain;
 import java.util.Date;
 import java.util.List;
 
+import org.springframework.web.multipart.MultipartFile;
+
 public class Photo {
 	private int id;
 	private String writer;
@@ -12,6 +14,17 @@ public class Photo {
 	private int scrap_count;
 	private List<PhotoFile> photoFile;
 	private double photos_comments_id;
+	
+	//
+	private MultipartFile PhotoImage;
+	
+	public MultipartFile getPhotoImage() {
+		return PhotoImage;
+	}
+	public void setPhotoImage(MultipartFile photoImage) {
+		PhotoImage = photoImage;
+	}
+	//
 	
 	@Override
 	public String toString() {

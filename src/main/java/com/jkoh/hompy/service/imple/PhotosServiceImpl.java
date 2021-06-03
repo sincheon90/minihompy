@@ -31,8 +31,8 @@ public class PhotosServiceImpl implements PhotosService {
 	}
 
 	@Override
-	public void addPhotos(Photo photo) {
-		photoRepository.addPhotos(photo);
+	public void addPhoto(Photo photo) {
+		photoRepository.addPhoto(photo);
 
 	}
 
@@ -71,6 +71,17 @@ public class PhotosServiceImpl implements PhotosService {
 	@Override
 	public List<PhotoComment> getCommentByPhotoId(int photoId) {
 		return photoCommentRepository.getCommentByPhotoId(photoId);
+	}
+
+	@Override
+	public void addPhotoFile(int id, int photoFileNum) {
+		photoFileRepository.addPhotoFile(id, photoFileNum);
+		
+	}
+
+	@Override
+	public int getPhotoFileNumByRownum(int rownum) {
+		return photoFileRepository.getPhotoFileNumByRownum(rownum);
 	}
 
 }

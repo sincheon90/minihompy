@@ -1,55 +1,14 @@
 [memo.txt]
-photos> 사진글 게시화면 디자인, 사진 첨부
+
+addPhotos> 저장 위치 지정
+addPhotos> photos/add 새창에서 띄우기
+addPhotos> 수정, 삭제 추가
+addPhotos> 여러장 올리기
+photos_comment> 댓글 입력 수정 삭제
 
 [6/2, W]
 - with jstl error 500
 	https://www.programmersought.com/article/60733912862/
-
--addPhotosController
-@RequestMapping(value = "/photos/add", method = RequestMethod.GET)
-	public String getAddNewPhotosForm(Model model) {
-		Photo newPhotos = new Photo();
-		model.addAttribute("newPhotos", newPhotos);
-		return "addPhotos";
-	}
-@RequestMapping(value = "/photos/add", method = RequestMethod.POST)
-	public String processAddNewPhotoForm(Model model,
-			@ModelAttribute("newPhoto") @Valid Photo newPhoto,
-			BindingResult result, HttpServletRequest request) {
-		if (result.hasErrors()) {
-			return "addPhoto";
-		}
-
-		try {
-			String[] suppressedFields = result.getSuppressedFields();
-			if (suppressedFields.length > 0) {
-				throw new RuntimeException(
-						"허용되지 않은 항목을 엮어오려고함: " + StringUtils.arrayToCommaDelimitedString(suppressedFields));
-			} else {
-				/**
-				 * 상품 영상 메모리 내용 정한 폴더에 파일로 보관
-				 */
-				MultipartFile PhotoImage = newPhoto.getPhotoImage();
-				String rootDirectory = request.getSession().getServletContext().getRealPath("/");
-				if (PhotoImage != null && !PhotoImage.isEmpty()) {
-					try {
-						PhotoImage.transferTo(
-								new File(rootDirectory + "resources\\images\\" + newPhoto.getPhotoId() + ".png"));
-					} catch (Exception e) {
-						throw new RuntimeException("Photo Image saving failed", e);
-					}
-				}
-				
-				photosService.addPhoto(newPhoto);
-			}
-			return "redirect:/photos";
-		} catch (DataAccessException e) {
-			String msg = e.getMessage();
-			int idx = msg.lastIndexOf("Duplicate");
-			model.addAttribute("errorMsg", msg.substring(idx));
-			return "addPhoto";
-		}
-	}
 
 [6/1 Tu]
 - 페이징 https://po9357.github.io/spring/2019-05-28-Board_Paging/

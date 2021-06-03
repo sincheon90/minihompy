@@ -1,16 +1,12 @@
 package com.jkoh.hompy.domain;
 
+import org.springframework.web.multipart.MultipartFile;
+
 public class PhotoFile {
 	private String num;
 	private String photos_files_id;
-	
-	public PhotoFile() {}
-	
-	public PhotoFile(String num, String photos_files_id) {
-		super();
-		this.num = num;
-		this.photos_files_id = photos_files_id;
-	}
+	private MultipartFile PhotoImage;
+
 	@Override
 	public String toString() {
 		return "PhotoFile [num=" + num + ", photos_files_id=" + photos_files_id + "]";
@@ -26,6 +22,12 @@ public class PhotoFile {
 	}
 	public void setPhotos_files_id(String photos_files_id) {
 		this.photos_files_id = photos_files_id;
+	}
+	public MultipartFile getPhotoImage() {
+		return PhotoImage;
+	}
+	public void setPhotoImage(MultipartFile photoImage) {
+		PhotoImage = photoImage;
 	}
 	
 	
