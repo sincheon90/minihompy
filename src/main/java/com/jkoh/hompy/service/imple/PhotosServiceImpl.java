@@ -84,4 +84,10 @@ public class PhotosServiceImpl implements PhotosService {
 		return photoFileRepository.getPhotoFileNumByRownum(rownum);
 	}
 
+	@Override
+	public void addPhotoComment(PhotoComment newComment) {
+		photoCommentRepository.addPhotoComment(newComment);
+		
+	}
+
 }

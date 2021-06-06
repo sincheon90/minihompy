@@ -7,6 +7,11 @@ public class PhotoComment {
 	private String writer;
 	private String photos_comments_id;
 	
+	@Override
+	public String toString() {
+		return "PhotoComment [num=" + num + ", comment=" + comment + ", writer=" + writer + ", photos_comments_id="
+				+ photos_comments_id + "]";
+	}
 	public String getNum() {
 		return num;
 	}

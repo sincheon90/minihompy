@@ -21,4 +21,5 @@ public interface PhotosService {
 	
 	void addPhotoFile(int id, int photoFileNum);
 	int getPhotoFileNumByRownum(int rownum);
+	void addPhotoComment(PhotoComment newComment);
 }

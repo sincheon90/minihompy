@@ -25,8 +25,6 @@ body
  </head>
 
 
-<form name="main">
-
  <body bgcolor="#F3F3F3" topmargin="0" leftmargin="0">
 
  	<script language="javascript">
@@ -175,6 +173,5 @@ body
 
  </body>
 
- </form>
 
 </html>

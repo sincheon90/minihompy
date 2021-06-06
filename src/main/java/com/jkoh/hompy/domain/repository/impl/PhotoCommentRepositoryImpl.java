@@ -8,6 +8,7 @@ import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataAccessException;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.stereotype.Repository;
@@ -32,9 +33,18 @@ public class PhotoCommentRepositoryImpl implements com.jkoh.hompy.domain.reposit
 	}
 
 	@Override
-	public void addPhotoComment(int photoId) {
-		// TODO Auto-generated method stub
-
+	public void addPhotoComment(PhotoComment newComment) {
+		String SQL = "insert into cyworld.photos_comments (comment, writer, photos_comments_id)"
+				+ " values (:comment, :writer, :photos_comments_id);";
+		Map<String, Object> params = new HashMap<String, Object>();
+		params.put("comment", newComment.getComment());
+		params.put("writer", newComment.getWriter());
+		params.put("photos_comments_id", newComment.getPhotos_comments_id());
+		try {
+			jdbcTemplate.update(SQL, params);
+		} catch (DataAccessException e) {
+			System.out.println(e);
+		}
 	}
 
 	@Override

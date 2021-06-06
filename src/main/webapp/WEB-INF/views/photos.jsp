@@ -1,8 +1,9 @@
 <%@ page isELIgnored="false" contentType = "text/html; charset=euc-kr" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core"  prefix="c" %>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
-<form name="photosContent">
+
 	<center><img src="<c:url value='/img/bar.jpg'/>" width="420" height="6" border="0" alt=""></center>
 	
 		<table border="0" width="420" cellpadding="1" cellspacing="1" align="center">
@@ -28,7 +29,7 @@
 			<tr>
 				<td>
 					<a name="n8"></a>
-					<font face="±¼¸²" style="font-size:9pt;"><b>${photo1.title}</b></font>
+					<font face="±¼¸²" style="font-size:9pt;"><b>ID: ${photo1.id}, Á¦¸ñ : ${photo1.title}</b></font>
 				</td>
 			</tr>
 		</table>
@@ -90,12 +91,14 @@
 						<tr>
 							<!-- ´ñ±Û ÀÔ·Â -->
 							<td align="center"> 
-								<br/>
-								<input type="text" name="comment" size="50">
-								<input type="submit" name="comment_save" value="È®ÀÎ" onclick="comment_ok()">
-							</td>					
-							<!-- ´ñ±Û ¸ñ·Ï -->				
-							<!-- if ´ñ±ÛÀÌ ÀÖÀ¸¸é -->
+								<form:form method="post" modelAttribute="newCom" action="photos">
+									´ñ±Û: <input type="text" id="comment" name="comment" size="50" />
+									<input type="text" id="id" name="id" value="${photo1.id}" style="display:none;"/>
+									<input type="submit" value="È®ÀÎ" >
+								</form:form>
+							</td>
+							<!-- onclick="javascript:void(window.open('./photos/addComment', 'addComment','width=300, height=400'))" -->
+							<!-- ´ñ±Û ¸ñ·Ï -->	
 						</tr>
 						<tr>
 							<td>
@@ -358,5 +361,3 @@
 	<!--  ¹æ¸í·Ï ¾Æ·§ºÎºÐ ±Û °Ë»ö ºÎºÐ ³¡ ---------- ------------------------------------------------------------ -->
 	<br/>
 
-
-</form>

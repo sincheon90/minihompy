@@ -48,7 +48,7 @@
 					사진 파일
 				</label>
 				<div class="col-lg-10">
-					<form:input id="photoImage" path="photoImage" type="file"	class="form:input-large" />
+					<form:input id="photoImage" path="photoImage" type="file" class="form:input-large" />
 				</div>
 			</div>
 			

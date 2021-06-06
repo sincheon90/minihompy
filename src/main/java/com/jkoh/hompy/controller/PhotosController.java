@@ -38,6 +38,17 @@ public class PhotosController {
 	public String photosContent(HttpServletRequest request, Model model,
 			@RequestParam(value = "page", required=false) String page) throws SQLException {
 
+		///////////////////// 댓글 입력 처리
+		PhotoComment newCom = new PhotoComment();
+		newCom.setComment(request.getParameter("comment"));
+		newCom.setWriter("방문자2");
+		newCom.setPhotos_comments_id(request.getParameter("id"));
+		try {
+			photosService.addPhotoComment(newCom);
+		} catch (Exception e) {
+			return "addCommentFail";
+		}
+		
 		/////////////페이징
 		String _page =  request.getParameter("page");
 		if (_page == null) _page = "1";
@@ -65,14 +76,6 @@ public class PhotosController {
 		return "photos";
 	}
 	
-//	 댓글입력 컨트롤러 
-//	@RequestMapping(value = "/photos/addNewComment", method = RequestMethod.POST)
-//	public String addNewCommnet(Model model, @RequestParam(value="newComment", required=false) Comment newComment) {
-//		댓글 입력 버튼 -> 하얀 댓글 입력창 
-//	-> 댓글입력 컨트롤러-처리 후 -> photos 창 원위치. 리다이렉트로 가능?
-//	}
-	 
-	
 	@RequestMapping(value = "/photos/add", method = RequestMethod.GET)
 	public String getAddNewPhotosForm(Model model) {
 		Photo newPhoto = new Photo();
@@ -95,16 +98,13 @@ public class PhotosController {
 				throw new RuntimeException(
 						"허용되지 않은 항목을 엮어오려고함: " + StringUtils.arrayToCommaDelimitedString(suppressedFields));
 			} else {
-				/**
-				 * 사진 파일 정한 폴더에 파일로 보관
-				 */
-				newPhoto.setId(photosService.getPhotosIdByRownum(1)+1); // newPhoto.getId()를 가지고 add photoFile
+				newPhoto.setId(photosService.getPhotosIdByRownum(1)+1); 
 				
-				String rootDirectory = request.getSession().getServletContext().getRealPath("/"); // 사진 파일 저장 위치 변경				
+				String rootDirectory = request.getSession().getServletContext().getRealPath("/");
 				MultipartFile photoImage = newPhoto.getPhotoImage();
 				if (photoImage != null && !photoImage.isEmpty()) {
 					try {
-						// 포토파일 데이터 추가
+						// 사진 파일 데이터 추가
 						int photoFileNum = photosService.getPhotoFileNumByRownum(1)+1 ;
 						photosService.addPhotoFile(newPhoto.getId(), photoFileNum);
 						
@@ -137,7 +137,5 @@ public class PhotosController {
 		return mav;
 	}
 	
-	
-
 
 }
