@@ -25,7 +25,7 @@ import com.jkoh.hompy.domain.PhotoComment;
 import com.jkoh.hompy.domain.PhotoFile;
 import com.jkoh.hompy.exception.PhotoNotFoundException;
 import com.jkoh.hompy.service.PhotosService;
-import com.jkoh.hompy.utiils.PagingVO;
+import com.jkoh.hompy.utiil.PagingVO;
 
 @Controller
 @RequestMapping
@@ -41,7 +41,7 @@ public class PhotosController {
 		///////////////////// 댓글 입력 처리
 		PhotoComment newCom = new PhotoComment();
 		newCom.setComment(request.getParameter("comment"));
-		newCom.setWriter("방문자2");
+		newCom.setWriter("방문자");
 		newCom.setPhotos_comments_id(request.getParameter("id"));
 		try {
 			photosService.addPhotoComment(newCom);

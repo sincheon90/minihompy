@@ -29,7 +29,7 @@
 			<tr>
 				<td>
 					<a name="n8"></a>
-					<font face="굴림" style="font-size:9pt;"><b>ID: ${photo1.id}, 제목 : ${photo1.title}</b></font>
+					<font face="굴림" style="font-size:9pt;"><b>${photo1.title}</b></font>
 				</td>
 			</tr>
 		</table>
@@ -43,12 +43,10 @@
 				</td>
 			</tr>
 			<tr>
-				<td colspan="2" align="center">  
-					사진
+				<td colspan="2" align="center"> 
 					<c:forEach items="${photoFile1}" var="photoFile1" varStatus="status">
 					<c:if test = "${photoFile1.num ne '0'}">
 					<a href="<c:url value='/img/${photoFile1.num}.png'/>" target="_blank"> <img src="<c:url value='/img/${photoFile1.num}.png'/>" width="400" height="300" border="0" alt=""></a>
-					${photoFile1.num}
 					</c:if>
 					</c:forEach>
 					
@@ -72,7 +70,7 @@
 						<tr>
 							<td> 
 								<font face="굴림" style="font-size:9pt;">
-									출처 : 장인수님의 미니홈피<br/>
+									출처 : 오정권님의 미니홈피<br/>
 									작성자 : ${photo1.writer}<br/>
 									작성일 : ${photo1.regdate}<br/>
 									공개설정 : 공개<br/>
@@ -90,9 +88,10 @@
 						</tr>
 						<tr>
 							<!-- 댓글 입력 -->
-							<td align="center"> 
+							<td> 
+								<br/>
 								<form:form method="post" modelAttribute="newCom" action="photos">
-									댓글: <input type="text" id="comment" name="comment" size="50" />
+									<input type="text" id="comment" name="comment" size="50" />
 									<input type="text" id="id" name="id" value="${photo1.id}" style="display:none;"/>
 									<input type="submit" value="확인" >
 								</form:form>
@@ -105,7 +104,6 @@
 								<font face="굴림" style="font-size:9pt;">
 								<!-- 백그라운드 색 : 회색,
 									리스트의 길이에 따라 배경도 같이 늘어날 수 있게 -->
-								댓글<br/>
 								<c:forEach items="${photoComment1}" var="photoComment1" varStatus="status">
 								<c:if test = "${photoComment1.num ne null && photoComment1.num ne '0'}">
 								<font color="#000099">${photoComment1.writer} :</font> ${photoComment1.comment} <br/>
@@ -172,7 +170,7 @@
 						<tr>
 							<td> 
 								<font face="굴림" style="font-size:9pt;">
-									출처 : 장인수님의 미니홈피<br/>
+									출처 : 오정권님의 미니홈피<br/>
 									작성자 : ${photo2.writer}<br/>
 									작성일 : ${photo2.regdate}<br/>
 									공개설정 : 공개<br/>
@@ -190,13 +188,16 @@
 						</tr>
 						<tr>
 							<!-- 댓글 입력 -->
-							<td align="center"> 
+							<td> 
 								<br/>
-								<input type="text" name="comment" size="50">
-								<input type="submit" name="comment_save" value="확인" onclick="comment_ok()">
-							</td>					
-							<!-- 댓글 목록 -->				
-							<!-- if 댓글이 있으면 -->
+								<form:form method="post" modelAttribute="newCom" action="photos">
+									<input type="text" id="comment" name="comment" size="50" />
+									<input type="text" id="id" name="id" value="${photo2.id}" style="display:none;"/>
+									<input type="submit" value="확인" >
+								</form:form>
+							</td>
+							<!-- onclick="javascript:void(window.open('./photos/addComment', 'addComment','width=300, height=400'))" -->
+							<!-- 댓글 목록 -->	
 						</tr>
 						<tr>
 							<td>
@@ -269,7 +270,7 @@
 						<tr>
 							<td> 
 								<font face="굴림" style="font-size:9pt;">
-									출처 : 장인수님의 미니홈피<br/>
+									출처 : 오정권님의 미니홈피<br/>
 									작성자 : ${photo3.writer}<br/>
 									작성일 : ${photo3.regdate}<br/>
 									공개설정 : 공개<br/>
@@ -287,11 +288,16 @@
 						</tr>
 						<tr>
 							<!-- 댓글 입력 -->
-							<td align="center"> 
+							<td> 
 								<br/>
-								<input type="text" name="comment" size="50">
-								<input type="submit" name="comment_save" value="확인" onclick="comment_ok()">
+								<form:form method="post" modelAttribute="newCom" action="photos">
+									<input type="text" id="comment" name="comment" size="50" />
+									<input type="text" id="id" name="id" value="${photo3.id}" style="display:none;"/>
+									<input type="submit" value="확인" >
+								</form:form>
 							</td>
+							<!-- onclick="javascript:void(window.open('./photos/addComment', 'addComment','width=300, height=400'))" -->
+							<!-- 댓글 목록 -->	
 						</tr>
 						<tr>
 							<td>

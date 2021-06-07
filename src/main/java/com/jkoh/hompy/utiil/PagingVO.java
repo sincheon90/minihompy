@@ -1,4 +1,4 @@
-package com.jkoh.hompy.utiils;
+package com.jkoh.hompy.utiil;
 
 public class PagingVO {
 	private int nowPage, startPage, endPage, total, cntPerPage, lastPage, start, end;

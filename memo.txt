@@ -4,6 +4,10 @@ addPhotos> 수정, 삭제 추가
 addPhotos> 여러장 올리기
 photos_comment> 댓글 입력 수정 삭제
 
+[6/6,Sun]
+- newCom의 객체를 미리 전달해야 jsp에서 객체를 담아서 받을 수 있다.
+	-> comment를 파라미터로 받아서 객체에 담는다
+	
 [6/2, W]
 - with jstl error 500
 	https://www.programmersought.com/article/60733912862/
