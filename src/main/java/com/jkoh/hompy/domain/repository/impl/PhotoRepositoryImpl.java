@@ -53,7 +53,7 @@ public class PhotoRepositoryImpl implements PhotoRepository {
 	}
 
 	@Override
-	public Photo getPhotoById(int rownum) {
+	public Photo getPhotoByRownum(int rownum) {
 		String SQL = "select row_number() over (order by p.id desc) as rownum, p.* "
 				+ "from cyworld.photos p limit "+ (rownum-1) +", 1";
 		Map<String, Object> params = new HashMap<String, Object>();

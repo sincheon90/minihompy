@@ -37,8 +37,8 @@ public class PhotosServiceImpl implements PhotosService {
 	}
 
 	@Override
-	public Photo getPhotoById(int id) {
-		return photoRepository.getPhotoById(id);
+	public Photo getPhotoByRownum(int Rownum) {
+		return photoRepository.getPhotoByRownum(Rownum);
 	}
 
 	@Override

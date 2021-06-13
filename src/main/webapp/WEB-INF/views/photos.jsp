@@ -29,7 +29,7 @@
 			<tr>
 				<td>
 					<a name="n8"></a>
-					<font face="±¼¸²" style="font-size:9pt;"><b>${photo1.title}</b></font>
+					<font face="±¼¸²" style="font-size:9pt;"><b>[${photo1.id}] ${photo1.title}</b></font>
 				</td>
 			</tr>
 		</table>
@@ -128,7 +128,7 @@
 			<tr>
 				<td>
 					<a name="n8"></a>
-					<font face="±¼¸²" style="font-size:9pt;"><b>${photo2.title}</b></font>
+					<font face="±¼¸²" style="font-size:9pt;"><b>[${photo2.id}] ${photo2.title}</b></font>
 				</td>
 			</tr>
 		</table>
@@ -147,7 +147,6 @@
 					<c:forEach items="${photoFile2}" var="photoFile2" varStatus="status">
 					<c:if test = "${photoFile2.num ne null && photoFile2.num ne '0'}">
 					<a href="<c:url value='/img/${photoFile2.num}.png'/>" target="_blank"> <img src="<c:url value='/img/${photoFile2.num}.png'/>" width="400" height="300" border="0" alt=""></a>
-					${photoFile2.num}
 					</c:if>
 					</c:forEach>
 				</td>
@@ -226,7 +225,7 @@
 			<tr>
 				<td>
 					<a name="n8"></a>
-					<font face="±¼¸²" style="font-size:9pt;"><b>${photo3.title}</b></font>
+					<font face="±¼¸²" style="font-size:9pt;"><b>[${photo3.id}] ${photo3.title}</b></font>
 				</td>
 			</tr>
 		</table>
@@ -246,7 +245,6 @@
 					<c:forEach items="${photoFile3}" var="photoFile3" varStatus="status">
 					<c:if test = "${photoFile3.num ne null && photoFile3.num ne '0'}">
 					<a href="<c:url value='/img/${photoFile3.num}.png'/>" target="_blank"> <img src="<c:url value='/img/${photoFile3.num}.png'/>" width="400" height="300" border="0" alt=""></a>
-					${photoFile3.num}
 					</c:if>
 					</c:forEach>
 					<!-- --------- -->

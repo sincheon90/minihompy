@@ -8,7 +8,7 @@ import com.jkoh.hompy.domain.PhotoFile;
 
 public interface PhotosService {
 	void addPhoto(Photo photo);
-	Photo getPhotoById(int id);
+	Photo getPhotoByRownum(int Rownum);
 	List<Photo> getAllPhotos();
 	void updatePhotos(Photo photo);
 	void deletePhotos(Photo photo);

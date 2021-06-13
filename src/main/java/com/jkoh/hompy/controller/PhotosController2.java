@@ -2,13 +2,9 @@ package com.jkoh.hompy.controller;
 
 import java.io.File;
 import java.sql.SQLException;
-import java.util.Enumeration;
 import java.util.List;
 
-import javax.servlet.ServletConfig;
-import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
@@ -31,52 +27,44 @@ import com.jkoh.hompy.exception.PhotoNotFoundException;
 import com.jkoh.hompy.service.PhotosService;
 import com.jkoh.hompy.utiil.PagingVO;
 
+/*
 @Controller
 @RequestMapping
-public class PhotosController {
+public class PhotosController2 {
 	
 	@Autowired
 	private PhotosService photosService;
 	
 	@RequestMapping("photos")
-	public String photosContent(HttpServletRequest request, Model model,
-			@RequestParam(value = "page", required=false) String page) throws SQLException {
+	public String photosContent(Model model, HttpServletRequest request) {
 
 		///////////////////// 댓글 입력 처리
-		PhotoComment newComment = new PhotoComment();
-		String comment = request.getParameter("comment");
-		String writer = "방문자";
-		String photos_comments_id = request.getParameter("id");
-		newComment.setComment(comment);
-		newComment.setWriter(writer);
-		newComment.setPhotos_comments_id(photos_comments_id);
+		PhotoComment newCom = new PhotoComment();
+		newCom.setComment(request.getParameter("comment"));
+		newCom.setWriter("방문자");
+		newCom.setPhotos_comments_id(request.getParameter("id"));
 		try {
-			photosService.addPhotoComment(newComment);
-//			System.out.println(request.getParameter("comment"));
-//			//comment 값을 지우는 작업 : 새로고침으로 같은 작업을 반복하지 않기 위해서
-//			System.out.println(request.getParameter("comment"));
+			photosService.addPhotoComment(newCom);
 		} catch (Exception e) {
 			return "addCommentFail";
 		}
 		
 		/////////////페이징
+		String _page = request.getParameter("page");
+		if (_page == null) _page = "1";
+		int rownum = Integer.parseInt(_page)*3-2;
 		int total = photosService.countPhotos();
-		String _page =  request.getParameter("page"); if (_page == null) _page = "1";
 		int cntPerPage = 3;
-		
-		PagingVO pagingVo = new PagingVO(total, Integer.parseInt(_page), cntPerPage);
-		
-		model.addAttribute("paging", pagingVo);
+		PagingVO vo = new PagingVO(total, Integer.parseInt(_page), cntPerPage);
+		model.addAttribute("paging", vo);
 		
 		//////////////photos 내용 담기
-		int firstPhotoRownum = Integer.parseInt(_page)*cntPerPage-2;
 		for(int i=0; i<cntPerPage; i++) {
 			try {
-				///////// 사진 게시글 (photo1, photo2, photo3)
-				model.addAttribute("photo"+(i+1), photosService.getPhotoByRownum(firstPhotoRownum+i));
+				///////// 사진 게시물 내용
+				model.addAttribute("photo"+(i+1), photosService.getPhotoById(rownum+i));
 				
-				///////// 사진 파일과 사진 댓글
-				int photoId = photosService.getPhotosIdByRownum(firstPhotoRownum+i);
+				int photoId = photosService.getPhotosIdByRownum(rownum+i);
 				List<PhotoFile> photoFile = photosService.getPhotoFileById(photoId);				
 				List<PhotoComment> photoComment = photosService.getCommentByPhotoId(photoId);
 				model.addAttribute("photoFile"+(i+1), photoFile);				
@@ -110,27 +98,45 @@ public class PhotosController {
 				throw new RuntimeException(
 						"허용되지 않은 항목을 엮어오려고함: " + StringUtils.arrayToCommaDelimitedString(suppressedFields));
 			} else {
+				newPhoto.setId(photosService.getPhotosIdByRownum(1)+1); 
+				
 				String rootDirectory = request.getSession().getServletContext().getRealPath("/");
 				MultipartFile photoImage = newPhoto.getPhotoImage();
 				if (photoImage != null && !photoImage.isEmpty()) {
 					try {
-						// 사진 파일 추가
-						int nextId = photosService.getPhotosIdByRownum(1)+1; newPhoto.setId(nextId);
-						int nextPhotoFileNum = photosService.getPhotoFileNumByRownum(1)+1 ;
-						photosService.addPhotoFile(nextId, nextPhotoFileNum);
+						// 사진 파일 데이터 추가
+						int photoFileNum = photosService.getPhotoFileNumByRownum(1)+1 ;
+						photosService.addPhotoFile(newPhoto.getId(), photoFileNum);
 						
 						photoImage.transferTo(
-								new File(rootDirectory + "resources\\images\\" + nextPhotoFileNum + ".png"));
+								new File(rootDirectory + "resources\\images\\" + photoFileNum + ".png"));						
 					} catch (Exception e) {
 						throw new RuntimeException("Photo Image saving failed", e);
 					}
-				}photosService.addPhoto(newPhoto);
+				}
+				photosService.addPhoto(newPhoto);
 			}
 			return "addPhotosDone";
 			
 		} catch (DataAccessException e) {
-			model.addAttribute("errorMsg", e);
+			String msg = e.getMessage();
+			int idx = msg.lastIndexOf("Duplicate");
+			model.addAttribute("errorMsg", msg.substring(idx));
 			return "addPhotos";
 		}
 	}
+
+	
+	@ExceptionHandler(PhotoNotFoundException.class)
+	public ModelAndView handleError(HttpServletRequest req, PhotoNotFoundException exception, Model model) {
+		ModelAndView mav = new ModelAndView();
+		mav.addObject("exception", exception);
+		mav.addObject("url",
+		req.getRequestURL()+"?"+req.getQueryString());
+		mav.setViewName("photos");
+		return mav;
+	}
+	
+
 }
+*/
