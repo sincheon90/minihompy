@@ -90,7 +90,7 @@
 							<!-- 댓글 입력 -->
 							<td> 
 								<br/>
-								<form:form method="post" modelAttribute="newCom" action="photos">
+								<form:form method="post" modelAttribute="newCom" action="addComment">
 									<input type="text" id="comment" name="comment" size="50" />
 									<input type="text" id="id" name="id" value="${photo1.id}" style="display:none;"/>
 									<input type="submit" value="확인" >
@@ -189,7 +189,7 @@
 							<!-- 댓글 입력 -->
 							<td> 
 								<br/>
-								<form:form method="post" modelAttribute="newCom" action="photos">
+								<form:form method="post" modelAttribute="newCom" action="addComment">
 									<input type="text" id="comment" name="comment" size="50" />
 									<input type="text" id="id" name="id" value="${photo2.id}" style="display:none;"/>
 									<input type="submit" value="확인" >
@@ -288,7 +288,7 @@
 							<!-- 댓글 입력 -->
 							<td> 
 								<br/>
-								<form:form method="post" modelAttribute="newCom" action="photos">
+								<form:form method="post" modelAttribute="newCom" action="addComment">
 									<input type="text" id="comment" name="comment" size="50" />
 									<input type="text" id="id" name="id" value="${photo3.id}" style="display:none;"/>
 									<input type="submit" value="확인" >

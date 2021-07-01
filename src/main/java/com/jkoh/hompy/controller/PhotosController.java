@@ -34,14 +34,12 @@ import com.jkoh.hompy.utiil.PagingVO;
 @Controller
 @RequestMapping
 public class PhotosController {
-	
+
 	@Autowired
 	private PhotosService photosService;
-	
-	@RequestMapping("photos")
-	public String photosContent(HttpServletRequest request, Model model,
-			@RequestParam(value = "page", required=false) String page) throws SQLException {
 
+	@RequestMapping("addComment")
+	public String addCommentForm(HttpServletRequest request, Model model) {
 		///////////////////// 댓글 입력 처리
 		PhotoComment newComment = new PhotoComment();
 		String comment = request.getParameter("comment");
@@ -51,55 +49,60 @@ public class PhotosController {
 		newComment.setWriter(writer);
 		newComment.setPhotos_comments_id(photos_comments_id);
 		try {
-			photosService.addPhotoComment(newComment);
-//			System.out.println(request.getParameter("comment"));
-//			//comment 값을 지우는 작업 : 새로고침으로 같은 작업을 반복하지 않기 위해서
-//			System.out.println(request.getParameter("comment"));
+			photosService.addPhotoComment(newComment);		
 		} catch (Exception e) {
 			return "addCommentFail";
 		}
-		
-		/////////////페이징
+
+		return "redirect:photos";
+	}
+
+	@RequestMapping("photos")
+	public String photosContent(HttpServletRequest request, Model model,
+			@RequestParam(value = "page", required = false) String page) throws SQLException {
+
+		///////////// 페이징
 		int total = photosService.countPhotos();
-		String _page =  request.getParameter("page"); if (_page == null) _page = "1";
+		String _page = request.getParameter("page");
+		if (_page == null)
+			_page = "1";
 		int cntPerPage = 3;
-		
+
 		PagingVO pagingVo = new PagingVO(total, Integer.parseInt(_page), cntPerPage);
-		
+
 		model.addAttribute("paging", pagingVo);
-		
-		//////////////photos 내용 담기
-		int firstPhotoRownum = Integer.parseInt(_page)*cntPerPage-2;
-		for(int i=0; i<cntPerPage; i++) {
+
+		////////////// photos 내용 담기
+		int firstPhotoRownum = Integer.parseInt(_page) * cntPerPage - 2;
+		for (int i = 0; i < cntPerPage; i++) {
 			try {
 				///////// 사진 게시글 (photo1, photo2, photo3)
-				model.addAttribute("photo"+(i+1), photosService.getPhotoByRownum(firstPhotoRownum+i));
-				
+				model.addAttribute("photo" + (i + 1), photosService.getPhotoByRownum(firstPhotoRownum + i));
+
 				///////// 사진 파일과 사진 댓글
-				int photoId = photosService.getPhotosIdByRownum(firstPhotoRownum+i);
-				List<PhotoFile> photoFile = photosService.getPhotoFileById(photoId);				
+				int photoId = photosService.getPhotosIdByRownum(firstPhotoRownum + i);
+				List<PhotoFile> photoFile = photosService.getPhotoFileById(photoId);
 				List<PhotoComment> photoComment = photosService.getCommentByPhotoId(photoId);
-				model.addAttribute("photoFile"+(i+1), photoFile);				
-				model.addAttribute("photoComment"+(i+1), photoComment);
+				model.addAttribute("photoFile" + (i + 1), photoFile);
+				model.addAttribute("photoComment" + (i + 1), photoComment);
 			} catch (Exception e) {
 				return "photos";
 			}
 		}
 		return "photos";
 	}
-	
+
 	@RequestMapping(value = "/photos/add", method = RequestMethod.GET)
 	public String getAddNewPhotosForm(Model model) {
 		Photo newPhoto = new Photo();
 		model.addAttribute("newPhoto", newPhoto);
 		return "addPhotos";
 	}
-	
+
 	@RequestMapping(value = "/photos/add", method = RequestMethod.POST)
-	public String processAddNewPhotoForm(Model model,
-			@ModelAttribute("newPhoto") Photo newPhoto,
-			BindingResult result, HttpServletRequest request) {
-		
+	public String processAddNewPhotoForm(Model model, @ModelAttribute("newPhoto") Photo newPhoto, BindingResult result,
+			HttpServletRequest request) {
+
 		if (result.hasErrors()) {
 			return "addPhotos";
 		}
@@ -115,19 +118,21 @@ public class PhotosController {
 				if (photoImage != null && !photoImage.isEmpty()) {
 					try {
 						// 사진 파일 추가
-						int nextId = photosService.getPhotosIdByRownum(1)+1; newPhoto.setId(nextId);
-						int nextPhotoFileNum = photosService.getPhotoFileNumByRownum(1)+1 ;
+						int nextId = photosService.getPhotosIdByRownum(1) + 1;
+						newPhoto.setId(nextId);
+						int nextPhotoFileNum = photosService.getPhotoFileNumByRownum(1) + 1;
 						photosService.addPhotoFile(nextId, nextPhotoFileNum);
-						
+
 						photoImage.transferTo(
 								new File(rootDirectory + "resources\\images\\" + nextPhotoFileNum + ".png"));
 					} catch (Exception e) {
 						throw new RuntimeException("Photo Image saving failed", e);
 					}
-				}photosService.addPhoto(newPhoto);
+				}
+				photosService.addPhoto(newPhoto);
 			}
 			return "addPhotosDone";
-			
+
 		} catch (DataAccessException e) {
 			model.addAttribute("errorMsg", e);
 			return "addPhotos";

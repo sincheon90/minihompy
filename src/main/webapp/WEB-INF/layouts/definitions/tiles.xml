@@ -26,5 +26,5 @@ Tiles Configuration 3.0//EN"
 		<put-attribute name="tagline" value="" />
 		<put-attribute name="content" value="/WEB-INF/views/photos.jsp"/>
 	</definition>
-	
+
 </tiles-definitions>
