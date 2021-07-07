@@ -37,6 +37,13 @@ public class PhotosController {
 
 	@Autowired
 	private PhotosService photosService;
+	
+	@RequestMapping("delComment")
+	public String delCommentForm(HttpServletRequest request, Model model) {
+		String num = request.getParameter("num");
+		photosService.delPhotoComment(num);
+		return "redirect:photos";
+	}
 
 	@RequestMapping("addComment")
 	public String addCommentForm(HttpServletRequest request, Model model) {

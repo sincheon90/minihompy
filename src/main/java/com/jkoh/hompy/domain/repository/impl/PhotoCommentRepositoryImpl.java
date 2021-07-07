@@ -63,9 +63,12 @@ public class PhotoCommentRepositoryImpl implements com.jkoh.hompy.domain.reposit
 	}
 
 	@Override
-	public void deletePhotoComment(int num) {
-		// TODO Auto-generated method stub
-
+	public void delPhotoComment(String num) {
+		String SQL = "DELETE FROM cyworld.photos_comments where num=:num";
+		Map<String, Object> params = new HashMap<String, Object>();
+		params.put("num", num);
+		jdbcTemplate.update(SQL, params);
+		
 	}
 
 }

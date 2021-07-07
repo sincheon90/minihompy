@@ -90,4 +90,10 @@ public class PhotosServiceImpl implements PhotosService {
 		
 	}
 
+	@Override
+	public void delPhotoComment(String num) {
+		photoCommentRepository.delPhotoComment(num);
+		
+	}
+
 }
