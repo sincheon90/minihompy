@@ -14,6 +14,7 @@
 					<td>
 						<input type="hidden" name="num" value="${num}" />
 						<input type="text" name="comment" />
+						<input type="hidden" id="page" name="page" value="${paging.nowPage}" />
 					</td>
 				</tr>
 				<tr>

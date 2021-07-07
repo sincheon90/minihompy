@@ -214,51 +214,30 @@
 						</td>
 					</tr>
 					<tr>
-						<td><br/>
-						<table border="0" bgcolor="#EBEBEB" width="100%" align="center" cellpadding="0" cellspacing="0">
-								<tr>
-								<!-- ¥Ò±€ ¿‘∑¬ -->
-									<td colspan="2" align="center">
-										<form:form method="post" modelAttribute="newCom" action="addComment">
-											<input type="hidden" id="page" name="page" value="${paging.nowPage}" />
-											<input type="hidden" id="id" name="id" value="${photo2.id}" />
-											<input type="text" id="comment" name="comment" size="39" />															
-											<td align="center" valign="top"><button type="submit"><font face="±º∏≤" style="font-size:9pt;">»Æ¿Œ</font></button></td>
-										</form:form>
-									</td>
-								</tr>																			
-								<c:forEach items="${photoComment2}" var="photoComment2" varStatus="status">
-									<tr height="10">
-									
-										<!-- ¥Ò±€ ∫“∑Øø¿±‚ -->
-										<td  valign="top">
-											<c:if test="${photoComment2.num ne null && photoComment2.num ne '0'}">
-												<font face="±º∏≤" style="font-size:9pt;">
-													<font color="#9C92FF">${photoComment2.writer} :</font> ${photoComment2.comment}
-												</font>
-											</c:if>
-										</td>
-
-										<!-- ¥Ò±€ ºˆ¡§ -->
-										<td width="10%" align="center" valign="top" style='max-height:16px'>
-											
-											<button type="submit" onclick="javascript:void(window.open('./updCommentForm?page=${paging.nowPage}&num=${photoComment2.num}', '¥Ò±€ ºˆ¡§','width=300, height=400'))">
-												<font face="±º∏≤" style="font-size:9pt;">ºˆ¡§</font>
-											</button>
-
-										</td>
-
-										<!-- ¥Ò±€ ªË¡¶ -->
-										<td width="10%" align="center" valign="top" style='max-height:16px'>
-											<form name="delCom" method="post" action="delComment">
-												<input type="hidden" id="page" name="page" value="${paging.nowPage}" />
-												<input type="hidden" name="num" value="${photoComment2.num}" />
-												<button type="submit"><font face="±º∏≤" style="font-size:9pt;">ªË¡¶</font></button>
-											</form>
-										</td>
-									</tr>
+						<!-- ¥Ò±€ ¿‘∑¬ -->
+						<td><br />
+							<form:form method="post" modelAttribute="newCom" action="addComment">
+								<input type="text" id="comment" name="comment" size="50" />
+								<input type="text" id="id" name="id" value="${photo2.id}"
+									style="display: none;" />
+								<input type="submit" value="»Æ¿Œ">
+							</form:form>
+						</td>
+						<!-- onclick="javascript:void(window.open('./photos/addComment', 'addComment','width=300, height=400'))" -->
+						<!-- ¥Ò±€ ∏Ò∑œ -->
+					</tr>
+					<tr>
+						<td>
+							<font face="±º∏≤" style="font-size: 9pt;">
+								<c:forEach items="${photoComment2}" var="photoComment2"
+									varStatus="status">
+									<c:if
+										test="${photoComment2.num ne null && photoComment2.num ne '0'}">
+										<font color="#000099">${photoComment2.writer} :</font>
+										${photoComment2.comment} <br />
+									</c:if>
 								</c:forEach>
-							</table>
+							</font>
 						</td>
 					</tr>
 				</table>
@@ -336,51 +315,30 @@
 						</td>
 					</tr>
 					<tr>
+						<!-- ¥Ò±€ ¿‘∑¬ -->
 						<td><br />
-							<table border="0" bgcolor="#EBEBEB" width="100%" align="center" cellpadding="0" cellspacing="0">
-								<tr>
-								<!-- ¥Ò±€ ¿‘∑¬ -->
-									<td colspan="2" align="center">
-										<form:form method="post" modelAttribute="newCom" action="addComment">
-											<input type="hidden" id="page" name="page" value="${paging.nowPage}" />
-											<input type="hidden" id="id" name="id" value="${photo3.id}" />
-											<input type="text" id="comment" name="comment" size="39" />															
-											<td align="center" valign="top"><button type="submit"><font face="±º∏≤" style="font-size:9pt;">»Æ¿Œ</font></button></td>
-										</form:form>
-									</td>
-								</tr>																			
-								<c:forEach items="${photoComment3}" var="photoComment3" varStatus="status">
-									<tr height="10">
-									
-										<!-- ¥Ò±€ ∫“∑Øø¿±‚ -->
-										<td  valign="top">
-											<c:if test="${photoComment3.num ne null && photoComment3.num ne '0'}">
-												<font face="±º∏≤" style="font-size:9pt;">
-													<font color="#9C92FF">${photoComment3.writer} :</font> ${photoComment3.comment}
-												</font>
-											</c:if>
-										</td>
-
-										<!-- ¥Ò±€ ºˆ¡§ -->
-										<td width="10%" align="center" valign="top" style='max-height:16px'>
-											
-											<button type="submit" onclick="javascript:void(window.open('./updCommentForm?page=${paging.nowPage}&num=${photoComment3.num}', '¥Ò±€ ºˆ¡§','width=300, height=400'))">
-												<font face="±º∏≤" style="font-size:9pt;">ºˆ¡§</font>
-											</button>
-
-										</td>
-
-										<!-- ¥Ò±€ ªË¡¶ -->
-										<td width="10%" align="center" valign="top" style='max-height:16px'>
-											<form name="delCom" method="post" action="delComment">
-												<input type="hidden" id="page" name="page" value="${paging.nowPage}" />
-												<input type="hidden" name="num" value="${photoComment3.num}" />
-												<button type="submit"><font face="±º∏≤" style="font-size:9pt;">ªË¡¶</font></button>
-											</form>
-										</td>
-									</tr>
+							<form:form method="post" modelAttribute="newCom" action="addComment">
+								<input type="text" id="comment" name="comment" size="50" />
+								<input type="text" id="id" name="id" value="${photo3.id}"
+									style="display: none;" />
+								<input type="submit" value="»Æ¿Œ">
+							</form:form>
+						</td>
+						<!-- onclick="javascript:void(window.open('./photos/addComment', 'addComment','width=300, height=400'))" -->
+						<!-- ¥Ò±€ ∏Ò∑œ -->
+					</tr>
+					<tr>
+						<td>
+							<font face="±º∏≤" style="font-size: 9pt;">
+								<c:forEach items="${photoComment3}" var="photoComment3"
+									varStatus="status">
+									<c:if
+										test="${photoComment3.num ne null && photoComment3.num ne '0'}">
+										<font color="#000099">${photoComment3.writer} :</font>
+										${photoComment3.comment} <br />
+									</c:if>
 								</c:forEach>
-							</table>
+							</font>
 						</td>
 					</tr>
 				</table>

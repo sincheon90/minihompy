@@ -2,13 +2,9 @@ package com.jkoh.hompy.controller;
 
 import java.io.File;
 import java.sql.SQLException;
-import java.util.Enumeration;
 import java.util.List;
 
-import javax.servlet.ServletConfig;
-import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
@@ -16,18 +12,15 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.util.StringUtils;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
-import org.springframework.web.servlet.ModelAndView;
 
 import com.jkoh.hompy.domain.Photo;
 import com.jkoh.hompy.domain.PhotoComment;
 import com.jkoh.hompy.domain.PhotoFile;
-import com.jkoh.hompy.exception.PhotoNotFoundException;
 import com.jkoh.hompy.service.PhotosService;
 import com.jkoh.hompy.utiil.PagingVO;
 
@@ -56,6 +49,9 @@ public class PhotosController {
 	
 	@RequestMapping("delComment")
 	public String delCommentForm(HttpServletRequest request, Model model) {
+		///현재 페이지 넘기기
+		model.addAttribute("page", request.getParameter("page"));
+				
 		String num = request.getParameter("num");
 		photosService.delPhotoComment(num);
 		return "redirect:photos";
@@ -63,6 +59,9 @@ public class PhotosController {
 
 	@RequestMapping("addComment")
 	public String addCommentForm(HttpServletRequest request, Model model) {
+		///현재 페이지 넘기기
+		model.addAttribute("page", request.getParameter("page"));
+		
 		///////////////////// 댓글 입력 처리
 		PhotoComment newComment = new PhotoComment();
 		String comment = request.getParameter("comment");

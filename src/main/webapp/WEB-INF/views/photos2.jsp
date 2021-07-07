@@ -93,7 +93,7 @@
 						</td>
 					</tr>
 					<tr>
-						<td><br>				
+						<td ><br/>			
 							<table border="0" bgcolor="#EBEBEB" width="100%" align="center" cellpadding="0" cellspacing="0">
 								<tr>
 								<!-- 댓글 입력 -->
@@ -150,7 +150,7 @@
 
 <!-- 사진2 ----------------------------------------------------------------------------------------------- -->
 <c:if test="${photo2 ne null}">
-	<center><br>
+	<center>
 		<img src="<c:url value='/img/bar.jpg'/>" width="420" height="6" border="0" alt="">
 	</center>
 	<table border="0" bgcolor="#EBEBEB" width="420" cellpadding="1" cellspacing="1" align="center">
@@ -185,8 +185,7 @@
 		<tr>
 			<td colspan="2">
 				<font face="굴림" style="font-size: 9pt;">
-					<!-- 내용 바꾸기 --> ${photo2.contents}
-					<!-- 네용 엔터 어떻게 할까? -->
+					${photo2.contents}
 				</font>
 				<!----------  -->
 			</td>
@@ -214,8 +213,8 @@
 						</td>
 					</tr>
 					<tr>
-						<td><br/>
-						<table border="0" bgcolor="#EBEBEB" width="100%" align="center" cellpadding="0" cellspacing="0">
+						<td><br />
+							<table border="0" bgcolor="#EBEBEB" width="100%" align="center" cellpadding="0" cellspacing="0">
 								<tr>
 								<!-- 댓글 입력 -->
 									<td colspan="2" align="center">
@@ -227,9 +226,8 @@
 										</form:form>
 									</td>
 								</tr>																			
-								<c:forEach items="${photoComment2}" var="photoComment2" varStatus="status">
-									<tr height="10">
-									
+								<c:forEach items="${photoComment2}" var="photoComment1" varStatus="status">
+									<tr height="10">									
 										<!-- 댓글 불러오기 -->
 										<td  valign="top">
 											<c:if test="${photoComment2.num ne null && photoComment2.num ne '0'}">
@@ -271,7 +269,7 @@
 
 <!-- 사진3 ----------------------------------------------------------------------------------------------- -->
 <c:if test="${photo3 ne null}">
-	<center><br>
+	<center>
 		<img src="<c:url value='/img/bar.jpg'/>" width="420" height="6" border="0" alt="">
 	</center>
 	<table border="0" bgcolor="#EBEBEB" width="420" cellpadding="1" cellspacing="1" align="center">
@@ -349,7 +347,7 @@
 										</form:form>
 									</td>
 								</tr>																			
-								<c:forEach items="${photoComment3}" var="photoComment3" varStatus="status">
+								<c:forEach items="${photoComment3}" var="photoComment1" varStatus="status">
 									<tr height="10">
 									
 										<!-- 댓글 불러오기 -->
