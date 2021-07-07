@@ -96,4 +96,10 @@ public class PhotosServiceImpl implements PhotosService {
 		
 	}
 
+	@Override
+	public void updPhotoComment(String num, String comment) {
+		photoCommentRepository.updPhotoComment(num, comment);
+		
+	}
+
 }

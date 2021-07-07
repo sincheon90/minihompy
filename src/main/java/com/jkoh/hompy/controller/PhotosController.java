@@ -38,6 +38,22 @@ public class PhotosController {
 	@Autowired
 	private PhotosService photosService;
 	
+	@RequestMapping("updCommentForm")
+	public String updCommentForm(HttpServletRequest request, Model model) {
+		String num = request.getParameter("num");
+		model.addAttribute("num", num);
+		return "updCommentForm";
+	}
+	
+	@RequestMapping("updComment")
+	public String processUpdCommentForm(HttpServletRequest request, Model model) {
+		String num = request.getParameter("num");
+		String comment = request.getParameter("comment");
+		photosService.updPhotoComment(num, comment);
+		return "processDone";
+	}
+
+	
 	@RequestMapping("delComment")
 	public String delCommentForm(HttpServletRequest request, Model model) {
 		String num = request.getParameter("num");
@@ -138,7 +154,7 @@ public class PhotosController {
 				}
 				photosService.addPhoto(newPhoto);
 			}
-			return "addPhotosDone";
+			return "processDone";
 
 		} catch (DataAccessException e) {
 			model.addAttribute("errorMsg", e);

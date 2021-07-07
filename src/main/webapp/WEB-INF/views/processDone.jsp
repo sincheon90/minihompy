@@ -5,7 +5,7 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
 <html>
 <head>
-<title>사진글 게시</title>
+<title>완료</title>
 </head>
 <body onload = "javascript:window.close(); opener.document.location.reload();">
 		

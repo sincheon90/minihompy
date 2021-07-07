@@ -15,12 +15,13 @@ public interface PhotosService {
 	int getPhotosIdByRownum(int rownum);
 	
 	List<PhotoFile> getPhotoFileById(int id);
-	int countPhotos();
+	void addPhotoFile(int id, int photoFileNum);	
+	int getPhotoFileNumByRownum(int rownum);
 	
 	List<PhotoComment> getCommentByPhotoId(int photoId);
-	
-	void addPhotoFile(int id, int photoFileNum);
-	int getPhotoFileNumByRownum(int rownum);
 	void addPhotoComment(PhotoComment newComment);
 	void delPhotoComment(String num);
+	void updPhotoComment(String num, String comment);
+	
+	int countPhotos();
 }
